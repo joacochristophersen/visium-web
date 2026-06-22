@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   VISIUM — Sistema de diseño (Conversion Intelligence)
+   ============================================================ */
+:root {
+  --void: #050505;
+  --ink: #0d0d12;
+  --panel: #121218;
+  --gold: #d4b36a;
+  --gold-bright: #e6c98a;
+  --gold-deep: #9a7b3a;
+
+  --lead-hot: #ff4d4d;
+  --lead-warm: #ff8a00;
+  --lead-mild: #facc15;
+  --lead-cold: #3b82f6;
+  --success: #2ecc71;
+
+  --text-primary: rgba(245, 245, 245, 0.95);
+  --text-muted: rgba(245, 245, 245, 0.58);
+  --text-faint: rgba(245, 245, 245, 0.34);
+
+  --glass-bg: rgba(255, 255, 255, 0.035);
+  --glass-border: rgba(212, 179, 106, 0.16);
+
+  --ease-spatial: cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-h: 76px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(212, 179, 106, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#1a1a22, #0a0a0a);
+  border-radius: 8px;
+  border: 2px solid #050505;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Hide native cursor where the custom one renders */
+@media (pointer: fine) {
+  html[data-loaded] * {
+    cursor: none;
+  }
+}
+
+/* ============================================================
+   Tipografía — institucional / private banking
+   ============================================================ */
+.fluid-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.7rem, 9vw, 8.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+.fluid-h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.1rem, 5.5vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+}
+
+.fluid-lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Component layer
+   ============================================================ */
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .glass-strong {
+    background: rgba(13, 13, 18, 0.7);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+  }
+
+  .panel {
+    background: linear-gradient(180deg, rgba(26, 26, 34, 0.9), rgba(13, 13, 18, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .text-gradient {
+    background: linear-gradient(110deg, #f5f5f5 0%, #e6c98a 55%, #d4b36a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(110deg, #e6c98a 0%, #d4b36a 60%, #9a7b3a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Subtle luxury arc-glow */
+  .arc-glow::before {
+    content: "";
+    position: absolute;
+    top: -45%;
+    left: 50%;
+    width: 140%;
+    height: 130%;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      ellipse 50% 40% at 50% 50%,
+      rgba(212, 179, 106, 0.18),
+      rgba(230, 201, 138, 0.06) 45%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hairline {
+    background: linear-gradient(90deg, transparent, rgba(212, 179, 106, 0.28) 50%, transparent);
+    height: 1px;
+  }
+
+  .border-gold {
+    position: relative;
+    background: linear-gradient(var(--ink), var(--ink)) padding-box,
+      linear-gradient(120deg, rgba(212, 179, 106, 0.55), rgba(230, 201, 138, 0.18), transparent 60%) border-box;
+    border: 1px solid transparent;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    padding: 0.4rem 0.85rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    backdrop-filter: blur(16px);
+  }
+
+  .btn-gold {
+    background: linear-gradient(180deg, #e6c98a, #d4b36a);
+    color: #0d0d12;
+  }
+}
+
+@layer utilities {
+  .container-tight {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .container-wide {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .perspective {
+    perspective: 1600px;
+  }
+
+  .dotgrid {
+    background-image: radial-gradient(rgba(212, 179, 106, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
+}
+
+.split-line {
+  display: block;
+  overflow: hidden;
+}
+.split-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

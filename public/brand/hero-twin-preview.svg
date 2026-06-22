@@ -1,0 +1,84 @@
+<svg width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="aura" cx="50%" cy="78%" r="60%">
+      <stop offset="0%" stop-color="#D4B36A" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#9A7B3A" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="floorFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4B36A" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E6C98A" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#E6C98A" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#E6C98A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="600" fill="#050505"/>
+  <rect width="960" height="600" fill="url(#aura)"/>
+
+  <!-- site grid -->
+  <g stroke="#D4B36A" stroke-opacity="0.14" stroke-width="1">
+    <line x1="120" y1="430" x2="840" y2="430"/>
+    <line x1="90" y1="470" x2="870" y2="470"/>
+    <line x1="60" y1="515" x2="900" y2="515"/>
+    <line x1="300" y1="420" x2="220" y2="525"/>
+    <line x1="480" y1="418" x2="480" y2="528"/>
+    <line x1="660" y1="420" x2="740" y2="525"/>
+  </g>
+
+  <!-- left supporting tower -->
+  <g stroke="#D4B36A" fill="#0b0e13" fill-opacity="0.55">
+    <rect x="250" y="250" width="95" height="180" stroke-opacity="0.8" stroke-width="1.4"/>
+  </g>
+  <g stroke="#E6C98A" stroke-opacity="0.32" stroke-width="1">
+    <line x1="250" y1="270" x2="345" y2="270"/><line x1="250" y1="292" x2="345" y2="292"/>
+    <line x1="250" y1="314" x2="345" y2="314"/><line x1="250" y1="336" x2="345" y2="336"/>
+    <line x1="250" y1="358" x2="345" y2="358"/><line x1="250" y1="380" x2="345" y2="380"/>
+    <line x1="250" y1="402" x2="345" y2="402"/>
+  </g>
+
+  <!-- right supporting tower -->
+  <g stroke="#D4B36A" fill="#0b0e13" fill-opacity="0.55">
+    <rect x="615" y="225" width="110" height="205" stroke-opacity="0.8" stroke-width="1.4"/>
+  </g>
+  <g stroke="#E6C98A" stroke-opacity="0.32" stroke-width="1">
+    <line x1="615" y1="248" x2="725" y2="248"/><line x1="615" y1="271" x2="725" y2="271"/>
+    <line x1="615" y1="294" x2="725" y2="294"/><line x1="615" y1="317" x2="725" y2="317"/>
+    <line x1="615" y1="340" x2="725" y2="340"/><line x1="615" y1="363" x2="725" y2="363"/>
+    <line x1="615" y1="386" x2="725" y2="386"/><line x1="615" y1="409" x2="725" y2="409"/>
+  </g>
+
+  <!-- hero tower -->
+  <g stroke="#D4B36A" fill="#0b0e13" fill-opacity="0.6">
+    <rect x="410" y="150" width="150" height="280" stroke-opacity="1" stroke-width="1.8"/>
+  </g>
+  <!-- floor lines -->
+  <g stroke="#E6C98A" stroke-opacity="0.34" stroke-width="1">
+    <line x1="410" y1="170" x2="560" y2="170"/><line x1="410" y1="190" x2="560" y2="190"/>
+    <line x1="410" y1="210" x2="560" y2="210"/><line x1="410" y1="230" x2="560" y2="230"/>
+    <line x1="410" y1="250" x2="560" y2="250"/><line x1="410" y1="270" x2="560" y2="270"/>
+    <line x1="410" y1="290" x2="560" y2="290"/><line x1="410" y1="310" x2="560" y2="310"/>
+    <line x1="410" y1="330" x2="560" y2="330"/><line x1="410" y1="350" x2="560" y2="350"/>
+    <line x1="410" y1="370" x2="560" y2="370"/><line x1="410" y1="390" x2="560" y2="390"/>
+    <line x1="410" y1="410" x2="560" y2="410"/>
+  </g>
+  <!-- corner mullions (brighter) -->
+  <g stroke="#E6C98A" stroke-width="2">
+    <line x1="410" y1="150" x2="410" y2="430"/>
+    <line x1="560" y1="150" x2="560" y2="430"/>
+  </g>
+  <!-- crown -->
+  <rect x="448" y="142" width="74" height="8" fill="#E6C98A" fill-opacity="0.9"/>
+
+  <!-- scan line -->
+  <rect x="386" y="300" width="198" height="2.5" fill="url(#scan)"/>
+
+  <!-- reflection -->
+  <g transform="translate(0,860) scale(1,-1)" opacity="0.18">
+    <rect x="410" y="150" width="150" height="280" fill="none" stroke="#D4B36A" stroke-width="1.2"/>
+  </g>
+  <rect x="0" y="430" width="960" height="170" fill="url(#floorFade)"/>
+</svg>

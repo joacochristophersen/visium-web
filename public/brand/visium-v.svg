@@ -1,0 +1,20 @@
+<svg width="128" height="128" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VISIUM">
+  <defs>
+    <linearGradient id="vLeft" x1="4" y1="4" x2="16" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E6C98A"/>
+      <stop offset="1" stop-color="#D4B36A"/>
+    </linearGradient>
+    <linearGradient id="vRight" x1="28" y1="4" x2="16" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D4B36A"/>
+      <stop offset="1" stop-color="#9A7B3A"/>
+    </linearGradient>
+  </defs>
+  <!-- Right plane (in shadow) -->
+  <path d="M28.4 4.6 L16 28 L16 15.8 L21.3 4.6 Z" fill="url(#vRight)"/>
+  <!-- Left plane (lit) -->
+  <path d="M3.6 4.6 L16 28 L16 15.8 L10.7 4.6 Z" fill="url(#vLeft)"/>
+  <!-- Architectural lit edge -->
+  <path d="M3.6 4.6 L16 28" stroke="#E6C98A" stroke-width="0.5" stroke-linecap="round" opacity="0.55"/>
+  <!-- Center fold seam -->
+  <path d="M16 15.8 L16 28" stroke="#050505" stroke-width="0.5" stroke-linecap="round" opacity="0.35"/>
+</svg>
