@@ -5,7 +5,7 @@ import { VisiumLogo } from "@/components/ui/VisiumLogo";
 const COLUMNS = [
   {
     title: "Plataforma",
-    links: ["VISIUM SCORE™", "Centro de Leads", "Analítica de comportamiento", "Simulador solar", "Integraciones"],
+    links: ["VISIUM SCORE™", "Centro de Leads", "Analítica de comportamiento", "Smart Booking™", "Integraciones"],
   },
   {
     title: "Soluciones",

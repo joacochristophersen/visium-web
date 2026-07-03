@@ -46,7 +46,7 @@ function ScoreGauge() {
           strokeDasharray={C}
           initial={{ strokeDashoffset: C }}
           animate={inView ? { strokeDashoffset: offset } : {}}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          transition={{ duration: 3.0, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -91,7 +91,7 @@ export function VisiumScoreSection() {
         <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Medidor */}
           <Reveal>
-            <div className="panel relative overflow-hidden rounded-6xl p-6 sm:p-10">
+            <div className="panel-lumen relative overflow-hidden rounded-6xl p-6 sm:p-10">
               <div className="mb-8 flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-white">Martina Acosta</p>

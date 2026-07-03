@@ -6,5 +6,4 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Motor VISIUM", href: "#motor" },
   { label: "VISIUM SCORE™", href: "#visium-score" },
   { label: "Plataforma", href: "#plataforma" },
-  { label: "Comparación", href: "#ventaja" },
 ];

@@ -10,25 +10,26 @@ interface MarqueeProps {
 export function Marquee({ items, className }: MarqueeProps) {
   const row = [...items, ...items];
   return (
-    <div className={cn("relative flex overflow-hidden", className)}>
+    <div
+      className={cn("relative flex overflow-hidden", className)}
+      style={{
+        // Fade lateral por máscara — no pinta negro sobre el lienzo de video
+        WebkitMaskImage:
+          "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)",
+        maskImage:
+          "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)",
+      }}
+    >
       <div className="flex shrink-0 animate-marquee items-center gap-16 pr-16">
         {row.map((item, i) => (
           <span
             key={i}
-            className="whitespace-nowrap text-sm uppercase tracking-ultrawide text-[color:var(--text-faint)]"
+            className="whitespace-nowrap text-sm uppercase tracking-ultrawide text-[color:var(--text-faint)] transition-colors duration-700 hover:text-gold/70"
           >
             {item}
           </span>
         ))}
       </div>
-      <div
-        aria-hidden
-        className="absolute inset-0 z-10"
-        style={{
-          background:
-            "linear-gradient(90deg,#050505,transparent 12%,transparent 88%,#050505)",
-        }}
-      />
     </div>
   );
 }

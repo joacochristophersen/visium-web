@@ -26,3 +26,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# claude code session state
+.omc/
+
+# video originals (4K backups, too heavy for git)
+.video-originals/

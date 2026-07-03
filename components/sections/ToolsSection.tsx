@@ -10,31 +10,45 @@ import { cn } from "@/lib/utils";
 
 /* ---- Mock visuals per tool (no screenshots needed) ---- */
 
-function HelioMock() {
+function BookingMock() {
   return (
     <svg viewBox="0 0 320 220" className="h-full w-full">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#D4B36A" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#050505" stopOpacity="0" />
-        </linearGradient>
-      </defs>
       <rect width="320" height="220" fill="#0b0b10" />
-      <rect width="320" height="160" fill="url(#sky)" />
-      <path d="M30 160 A130 130 0 0 1 290 160" fill="none" stroke="#E6C98A" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="3 4" />
-      <circle cx="205" cy="74" r="11" fill="#E6C98A" />
-      <circle cx="205" cy="74" r="20" fill="#E6C98A" opacity="0.18" />
-      <line x1="30" y1="160" x2="290" y2="160" stroke="#D4B36A" strokeOpacity="0.5" />
-      {/* building silhouette */}
-      <rect x="120" y="110" width="80" height="50" fill="#11151b" stroke="#D4B36A" strokeOpacity="0.6" />
-      <g fill="#6b5a32" fontSize="9" fontFamily="monospace">
-        <text x="30" y="178">06:00</text>
-        <text x="150" y="178">13:00</text>
-        <text x="258" y="178">19:00</text>
-      </g>
-      <rect x="30" y="194" width="260" height="3" rx="1.5" fill="#1d1d24" />
-      <rect x="30" y="194" width="150" height="3" rx="1.5" fill="#D4B36A" />
-      <circle cx="180" cy="195.5" r="5" fill="#E6C98A" />
+      {/* Calendar grid */}
+      <rect x="30" y="30" width="160" height="160" rx="6" fill="#11151b" stroke="#D4B36A" strokeOpacity="0.5" strokeWidth="1" />
+      {/* Header */}
+      <rect x="30" y="30" width="160" height="28" rx="6" fill="#1a1a26" />
+      <text x="80" y="48" fill="#E6C98A" fontSize="10" fontFamily="monospace">Julio 2026</text>
+      {/* Day labels */}
+      {["L","M","M","J","V","S","D"].map((d, i) => (
+        <text key={i} x={38 + i * 21} y={74} fill="#5a5a70" fontSize="8" fontFamily="monospace">{d}</text>
+      ))}
+      {/* Day cells */}
+      {[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map((n, i) => {
+        const col = i % 7;
+        const row = Math.floor(i / 7);
+        const isHighlight = n === 8;
+        return (
+          <g key={n}>
+            {isHighlight && <rect x={35 + col * 21} y={80 + row * 22} width="16" height="16" rx="4" fill="#D4B36A" />}
+            <text x={40 + col * 21} y={92 + row * 22} fill={isHighlight ? "#0b0b10" : "#888899"} fontSize="9" fontFamily="monospace">{n}</text>
+          </g>
+        );
+      })}
+      {/* Lead card on right */}
+      <rect x="204" y="30" width="90" height="110" rx="6" fill="#11151b" stroke="#D4B36A" strokeOpacity="0.4" />
+      <rect x="212" y="40" width="50" height="8" rx="2" fill="#1d1d2e" />
+      <text x="212" y="54" fill="#E6C98A" fontSize="8" fontFamily="monospace">Lead calificado</text>
+      <rect x="212" y="60" width="72" height="1" fill="#2a2a38" />
+      <text x="212" y="75" fill="#7a7a90" fontSize="7" fontFamily="monospace">Score: 91</text>
+      <text x="212" y="88" fill="#7a7a90" fontSize="7" fontFamily="monospace">Unidad: 2204</text>
+      <text x="212" y="101" fill="#7a7a90" fontSize="7" fontFamily="monospace">Hora: 10:30 AM</text>
+      <rect x="212" y="112" width="72" height="18" rx="4" fill="#D4B36A" />
+      <text x="224" y="124" fill="#0b0b10" fontSize="8" fontFamily="monospace" fontWeight="bold">Confirmar</text>
+      {/* Supabase / live badge */}
+      <rect x="204" y="152" width="90" height="30" rx="4" fill="#11151b" stroke="#2ECC71" strokeOpacity="0.35" />
+      <circle cx="216" cy="167" r="3" fill="#2ECC71" />
+      <text x="223" y="171" fill="#4a9a6a" fontSize="7" fontFamily="monospace">Notif. en tiempo real</text>
     </svg>
   );
 }
@@ -101,7 +115,7 @@ function NavMock() {
 }
 
 const MOCKS: Record<TwinTool["icon"], React.ReactNode> = {
-  sun: <HelioMock />,
+  booking: <BookingMock />,
   measure: <MeasureMock />,
   furniture: <FurnitureMock />,
   navigate: <NavMock />,
@@ -134,7 +148,7 @@ export function ToolsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={VIEWPORT}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="panel grid items-stretch overflow-hidden rounded-5xl lg:grid-cols-2"
+              className="panel-lumen grid items-stretch overflow-hidden rounded-5xl lg:grid-cols-2"
             >
               {/* Mock */}
               <div
@@ -170,7 +184,7 @@ export function ToolsSection() {
                 </div>
 
                 <p className="border-l-2 border-gold/50 pl-4 text-base font-light italic leading-snug text-[color:var(--text-primary)]">
-                  “{tool.message}”
+                  &ldquo;{tool.message}&rdquo;
                 </p>
               </div>
             </motion.div>

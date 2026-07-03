@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HeroCanvas } from "@/components/HeroCanvas";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { GradientText } from "@/components/ui/GradientText";
 import { Badge } from "@/components/ui/Badge";
@@ -13,35 +12,39 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="arc-glow relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden pt-32"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center pt-32"
     >
-      {/* Entorno 3D — sutil, no compite con el mensaje */}
-      <div className="absolute inset-0 opacity-70">
-        <HeroCanvas />
-      </div>
+      {/* El video de fondo vive en GlobalVideoCanvas — lienzo continuo sin cortes */}
+      <div className="pointer-events-none absolute inset-0 dotgrid opacity-[0.12] mask-fade-y" />
 
-      <div className="pointer-events-none absolute inset-0 bg-radial-fade" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-void to-transparent" />
-      <div className="pointer-events-none absolute inset-0 dotgrid opacity-30 mask-fade-y" />
-
-      {/* Rieles editoriales */}
-      <div className="pointer-events-none absolute left-5 top-1/2 hidden -translate-y-1/2 lg:block">
+      {/* Rieles editoriales — fijos a los costados durante todo el recorrido */}
+      <div className="pointer-events-none fixed left-5 top-1/2 z-[2] hidden -translate-y-1/2 lg:block">
         <span className="block rotate-180 font-mono text-[11px] uppercase tracking-ultrawide text-[color:var(--text-faint)] [writing-mode:vertical-rl]">
           Inteligencia de Conversión Inmobiliaria
         </span>
       </div>
-      <div className="pointer-events-none absolute right-5 top-1/2 hidden -translate-y-1/2 lg:block">
+      <div className="pointer-events-none fixed right-5 top-1/2 z-[2] hidden -translate-y-1/2 lg:block">
         <span className="block font-mono text-[11px] uppercase tracking-ultrawide text-[color:var(--text-faint)] [writing-mode:vertical-rl]">
           VISIUM SCORE™ · Tiempo real
         </span>
       </div>
 
       <div className="container-wide relative z-10 flex flex-col items-center text-center">
+        {/* Super-título de marca — ultra-lujo */}
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, ease: EASE_SPATIAL, delay: 0.15 }}
+          className="mb-5 font-sans text-xs font-medium uppercase tracking-[0.5em] text-neutral-400 sm:text-sm"
+        >
+          VISIUM
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE_SPATIAL, delay: 0.3 }}
-          className="mb-9"
+          className="mb-7"
         >
           <Badge>Spatial Intelligence Platform</Badge>
         </motion.div>
@@ -65,58 +68,31 @@ export function Hero() {
           </motion.span>
         </h1>
 
-        {/* Feature concept pills */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE_SPATIAL, delay: 0.88 }}
-          className="mt-8 flex flex-wrap justify-center gap-2"
-        >
-          {[
-            "Spatial Intelligence",
-            "Walk Through Reality",
-            "Helio-View™",
-            "Cotas Bidireccionales",
-          ].map((concept) => (
-            <span
-              key={concept}
-              className="inline-flex items-center rounded-full border border-gold/25 bg-gold/[0.06] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-ultrawide text-gold"
-            >
-              {concept}
-            </span>
-          ))}
-        </motion.div>
-
-        <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE_SPATIAL, delay: 0.95 }}
-          className="mt-9 max-w-2xl text-balance fluid-lead text-[color:var(--text-muted)]"
-        >
-          La plataforma de Spatial Intelligence que transforma videos de
-          propiedad en gemelos digitales interactivos — con{" "}
-          <span className="text-gold">Helio-View™</span> para simular la luz
-          solar y{" "}
-          <span className="text-gold">Cotas de Medición Bidireccionales</span>{" "}
-          para verificar cada espacio. Antes de la primera llamada.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE_SPATIAL, delay: 1.1 }}
           className="mt-10 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row"
         >
-          <MagneticButton href="#cta" className="w-full sm:w-auto">
+          <MagneticButton href="#cta" className="w-full max-w-xs sm:w-auto sm:max-w-none">
             Solicitar Demo
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </MagneticButton>
-          <MagneticButton href="#plataforma" variant="ghost" className="w-full sm:w-auto">
+          <MagneticButton href="#plataforma" variant="ghost" className="w-full max-w-xs sm:w-auto sm:max-w-none">
             Ver Plataforma
           </MagneticButton>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE_SPATIAL, delay: 1.15 }}
+          className="mt-10 mb-10 max-w-xl text-balance text-center text-sm text-neutral-400 sm:mt-8 sm:mb-8"
+        >
+          Spatial Intelligence para Real Estate. El dashboard predictivo que transforma visualizaciones en decisiones de compra.
+        </motion.p>
       </div>
 
       {/* Prueba de inteligencia de comportamiento — tarjeta de lead real */}

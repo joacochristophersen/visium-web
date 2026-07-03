@@ -70,7 +70,7 @@ export function IntelligenceEngineSection() {
           {/* Motor de scoring */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <Reveal>
-              <div className="panel relative overflow-hidden rounded-6xl p-8 sm:p-10">
+              <div className="panel-lumen relative overflow-hidden rounded-6xl p-8 sm:p-10">
                 <div className="pointer-events-none absolute inset-0 bg-mesh opacity-50" />
                 <div className="relative flex flex-col items-center text-center">
                   <p className="font-mono text-[11px] uppercase tracking-ultrawide text-gold">
@@ -88,7 +88,7 @@ export function IntelligenceEngineSection() {
                       initial={{ width: 0 }}
                       whileInView={{ width: "94%" }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                      transition={{ duration: 2.8, ease: [0.25, 1, 0.5, 1], delay: 0.4 }}
                       className="h-full rounded-full bg-gradient-to-r from-gold-bright to-gold"
                     />
                   </div>

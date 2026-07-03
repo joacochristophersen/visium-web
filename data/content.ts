@@ -45,7 +45,7 @@ export const FLOW_STEPS: Step[] = [
   {
     index: "03",
     title: "El cliente explora",
-    body: "El comprador recorre la propiedad desde un link. Mide, simula la luz y verifica cada ambiente.",
+    body: "El comprador recorre la propiedad desde un link. Mide, posiciona muebles y verifica cada ambiente.",
   },
   {
     index: "04",
@@ -62,7 +62,7 @@ export interface ScoreSignal {
 export const SCORE_SIGNALS: ScoreSignal[] = [
   { label: "Midió la cocina 3 veces", weight: "+18" },
   { label: "Volvió 4 días seguidos", weight: "+22" },
-  { label: "Simuló la luz natural", weight: "+14" },
+  { label: "Interacción con planos de planta", weight: "+15" },
   { label: "Verificó espacio para cama king", weight: "+16" },
   { label: "Compartió la propiedad", weight: "+12" },
   { label: "Contactó al agente", weight: "+24" },
@@ -88,10 +88,10 @@ export const PLATFORM_MODULES: PlatformModule[] = [
       "VISIUM SCORE™ en tiempo real para cada lead y cada propiedad. Priorizá con datos, no con intuición.",
   },
   {
-    name: "Simulador Solar",
-    tag: "Solar Simulator",
+    name: "Agendado Inteligente",
+    tag: "Smart Booking",
     description:
-      "El comprador ve exactamente cómo entra el sol a cada hora del día. Una señal de intención poderosa.",
+      "El comprador agenda una visita presencial con un clic, desde dentro del recorrido. El agente recibe el lead pre-calificado con su score.",
   },
   {
     name: "Sistema de Medición",
@@ -136,28 +136,12 @@ export const TIER_META: Record<
 export const LEADS: Lead[] = [
   { name: "Martina Acosta", property: "Penthouse · Palermo", score: 94, tier: "hot", signal: "Volvió 4 días seguidos" },
   { name: "Joaquín Ferreyra", property: "Casa · Nordelta", score: 88, tier: "hot", signal: "Contactó al agente" },
-  { name: "Lucía Romero", property: "Depto 3 amb · Recoleta", score: 76, tier: "warm", signal: "Simuló luz natural" },
+  { name: "Lucía Romero", property: "Depto 3 amb · Recoleta", score: 76, tier: "warm", signal: "Midió dormitorio principal" },
   { name: "Diego Sosa", property: "Oficina · Puerto Madero", score: 69, tier: "warm", signal: "Midió 2 ambientes" },
   { name: "Valentina Pérez", property: "Loft · Villa Crespo", score: 58, tier: "mild", signal: "Exploró 6 minutos" },
   { name: "Tomás Giménez", property: "Quinta · Pilar", score: 31, tier: "cold", signal: "Una visita rápida" },
 ];
 
-export interface ComparisonRow {
-  feature: string;
-  matterport: boolean | string;
-  xplora: boolean | string;
-  visium: boolean | string;
-}
-
-export const COMPARISON_ROWS: ComparisonRow[] = [
-  { feature: "Recorrido inmersivo de la propiedad", matterport: true, xplora: true, visium: true },
-  { feature: "Captura desde un celular", matterport: false, xplora: "Limitado", visium: true },
-  { feature: "Analítica de comportamiento", matterport: false, xplora: false, visium: true },
-  { feature: "Scoring de intención de compra", matterport: false, xplora: false, visium: "VISIUM SCORE™" },
-  { feature: "Priorización de leads para el equipo", matterport: false, xplora: false, visium: true },
-  { feature: "Alertas de lead caliente en tiempo real", matterport: false, xplora: false, visium: true },
-  { feature: "Predicción de cierre", matterport: false, xplora: false, visium: true },
-];
 
 export interface RoadmapItem {
   phase: string;

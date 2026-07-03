@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Preloader } from "@/components/Preloader";
 import { Cursor } from "@/components/Cursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { GlobalVideoCanvas } from "@/components/GlobalVideoCanvas";
 import { Hero } from "@/components/Hero";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { SolutionSection } from "@/components/sections/SolutionSection";
@@ -12,7 +13,6 @@ import { VisiumScoreSection } from "@/components/sections/VisiumScoreSection";
 import { FunnelSection } from "@/components/sections/FunnelSection";
 import { PlataformaSection } from "@/components/sections/PlataformaSection";
 import { DashboardSection } from "@/components/sections/DashboardSection";
-import { VentajaSection } from "@/components/sections/VentajaSection";
 import { RoadmapSection } from "@/components/sections/RoadmapSection";
 import { FutureSection } from "@/components/sections/FutureSection";
 import { CTASection } from "@/components/sections/CTASection";
@@ -26,6 +26,8 @@ export default function Home() {
       <Cursor />
       <ScrollProgress />
       <Navbar />
+      {/* Lienzo cinemático continuo — corre debajo de toda la página */}
+      <GlobalVideoCanvas />
       <main className="relative">
         {/* Grano global */}
         <div className="pointer-events-none fixed inset-0 z-[1] opacity-[0.02] noise mix-blend-overlay" />
@@ -40,8 +42,6 @@ export default function Home() {
         {/* De señales a ventas */} <FunnelSection />
         {/* 05 */} <PlataformaSection />
         {/* 06 */} <DashboardSection />
-        <SectionDivider from="06 — Dashboard" to="07 — Ventaja" />
-        {/* 07 */} <VentajaSection />
         {/* 08 */} <RoadmapSection />
         {/* 09 */} <FutureSection />
         {/* 10 */} <CTASection />

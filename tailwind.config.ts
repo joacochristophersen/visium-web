@@ -50,8 +50,8 @@ const config: Config = {
         ultrawide: "0.42em",
       },
       spacing: {
-        section: "11rem",
-        "section-sm": "7rem",
+        section: "13rem",
+        "section-sm": "8rem",
       },
       borderRadius: {
         "4xl": "2rem",
@@ -113,6 +113,8 @@ const config: Config = {
         marquee: "marquee 40s linear infinite",
         "spin-slow": "spin-slow 24s linear infinite",
         "ping-soft": "ping-soft 2.4s cubic-bezier(0,0,0.2,1) infinite",
+        // Radar pausado para las simulaciones — tempo cinematográfico
+        "ping-radar": "ping-soft 3.2s cubic-bezier(0.25,1,0.5,1) infinite",
       },
     },
   },

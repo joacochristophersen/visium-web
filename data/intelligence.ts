@@ -5,14 +5,14 @@
 export interface EngineSignal {
   action: string;
   points: number;
-  icon: "measure" | "furniture" | "sun" | "return" | "compare" | "share" | "contact";
+  icon: "measure" | "furniture" | "bookmark" | "return" | "compare" | "share" | "contact";
 }
 
 /** Cada acción dentro del gemelo digital suma puntos al VISIUM SCORE. */
 export const ENGINE_SIGNALS: EngineSignal[] = [
   { action: "Medición de espacios", points: 8, icon: "measure" },
   { action: "Simulación de muebles", points: 12, icon: "furniture" },
-  { action: "Helio View", points: 6, icon: "sun" },
+  { action: "Guardó en favoritos", points: 15, icon: "bookmark" },
   { action: "Visita recurrente", points: 15, icon: "return" },
   { action: "Comparación de unidades", points: 10, icon: "compare" },
   { action: "Compartir propiedad", points: 18, icon: "share" },
@@ -25,17 +25,17 @@ export interface TwinTool {
   tagline: string;
   features: string[];
   message: string;
-  icon: "sun" | "measure" | "furniture" | "navigate";
+  icon: "booking" | "measure" | "furniture" | "navigate";
 }
 
 export const TWIN_TOOLS: TwinTool[] = [
   {
-    id: "helio-view",
-    name: "HELIO VIEW™",
-    tagline: "Simulación solar",
-    features: ["Amanecer", "Atardecer", "Cambios estacionales", "Análisis de luz natural"],
-    message: "El comprador entiende cómo se comporta la propiedad a lo largo del día.",
-    icon: "sun",
+    id: "smart-booking",
+    name: "SMART BOOKING™",
+    tagline: "Agendado inteligente",
+    features: ["Agenda desde el visor", "Score pre-calculado", "Notificación al agente", "Filtro de inversores"],
+    message: "El comprador agenda una visita sin salir del recorrido. El agente recibe el lead ya calificado.",
+    icon: "booking",
   },
   {
     id: "smart-measure",

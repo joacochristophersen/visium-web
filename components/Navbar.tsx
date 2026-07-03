@@ -23,8 +23,10 @@ export function Navbar() {
     >
       <nav
         className={cn(
-          "flex w-full max-w-6xl items-center justify-between rounded-full px-5 py-3 transition-all duration-500",
-          scrolled ? "glass shadow-glass" : "bg-transparent"
+          "flex w-full max-w-6xl items-center justify-between rounded-full px-5 transition-all duration-700 ease-spatial",
+          scrolled
+            ? "glass border-gold/[0.22] py-2.5 shadow-glass"
+            : "border border-transparent bg-transparent py-3"
         )}
       >
         <a href="#top" className="group flex items-center gap-2.5" aria-label="VISIUM — inicio">
