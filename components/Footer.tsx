@@ -1,6 +1,9 @@
+"use client";
+
 import { SITE } from "@/utils/constants";
 import { GradientText } from "@/components/ui/GradientText";
 import { VisiumLogo } from "@/components/ui/VisiumLogo";
+import { useDemoModal } from "@/components/DemoSimulationModal";
 
 const COLUMNS = [
   {
@@ -18,6 +21,7 @@ const COLUMNS = [
 ];
 
 export function Footer() {
+  const { openDemoModal } = useDemoModal();
   return (
     <footer className="relative overflow-hidden border-t border-white/5">
       <div className="container-tight relative z-10 grid gap-12 py-24 md:grid-cols-[1.3fr_1fr] md:items-end">
@@ -36,6 +40,7 @@ export function Footer() {
           />
           <button
             type="button"
+            onClick={openDemoModal}
             className="btn-gold shrink-0 rounded-full px-5 py-2.5 text-sm font-medium"
           >
             Solicitar Demo

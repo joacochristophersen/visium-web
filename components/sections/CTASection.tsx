@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { GradientText } from "@/components/ui/GradientText";
 import { VIEWPORT, scaleIn } from "@/animations/variants";
+import { useDemoModal } from "@/components/DemoSimulationModal";
 
 export function CTASection() {
+  const { openDemoModal } = useDemoModal();
   return (
     <section id="cta" className="relative px-4 py-section">
       <motion.div
@@ -30,7 +32,14 @@ export function CTASection() {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <MagneticButton href="#top" className="w-full sm:w-auto">
+            <MagneticButton
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                openDemoModal();
+              }}
+              className="w-full sm:w-auto"
+            >
               Solicitar Demo
             </MagneticButton>
             <MagneticButton href="#top" variant="ghost" className="w-full sm:w-auto">

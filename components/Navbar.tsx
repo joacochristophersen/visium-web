@@ -6,8 +6,10 @@ import { NAV_LINKS } from "@/data/navigation";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { VisiumLogo } from "@/components/ui/VisiumLogo";
 import { cn } from "@/lib/utils";
+import { useDemoModal } from "@/components/DemoSimulationModal";
 
 export function Navbar() {
+  const { openDemoModal } = useDemoModal();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -53,7 +55,14 @@ export function Navbar() {
           >
             Ingresar
           </a>
-          <MagneticButton href="#cta" className="px-5 py-2.5 text-[13px]">
+          <MagneticButton
+            href="#cta"
+            onClick={(e) => {
+              e.preventDefault();
+              openDemoModal();
+            }}
+            className="px-5 py-2.5 text-[13px]"
+          >
             Solicitar Demo
           </MagneticButton>
         </div>
@@ -86,7 +95,11 @@ export function Navbar() {
           ))}
           <a
             href="#cta"
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setOpen(false);
+              openDemoModal();
+            }}
             className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-sm font-medium text-black"
           >
             Solicitar Demo

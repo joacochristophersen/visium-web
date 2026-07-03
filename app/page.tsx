@@ -18,10 +18,11 @@ import { FutureSection } from "@/components/sections/FutureSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { Footer } from "@/components/Footer";
 import { SectionDivider } from "@/components/ui/SectionDivider";
+import { DemoModalProvider } from "@/components/DemoSimulationModal";
 
 export default function Home() {
   return (
-    <>
+    <DemoModalProvider>
       <Preloader />
       <Cursor />
       <ScrollProgress />
@@ -47,6 +48,6 @@ export default function Home() {
         {/* 10 */} <CTASection />
       </main>
       <Footer />
-    </>
+    </DemoModalProvider>
   );
 }

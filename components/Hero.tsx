@@ -7,8 +7,10 @@ import { Badge } from "@/components/ui/Badge";
 import { Marquee } from "@/components/ui/Marquee";
 import { HeroIntelCard } from "@/components/HeroIntelCard";
 import { EASE_SPATIAL } from "@/animations/variants";
+import { useDemoModal } from "@/components/DemoSimulationModal";
 
 export function Hero() {
+  const { openDemoModal } = useDemoModal();
   return (
     <section
       id="top"
@@ -74,7 +76,14 @@ export function Hero() {
           transition={{ duration: 0.9, ease: EASE_SPATIAL, delay: 0.95 }}
           className="mt-10 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row"
         >
-          <MagneticButton href="#cta" className="w-full max-w-xs sm:w-auto sm:max-w-none">
+          <MagneticButton
+            href="#cta"
+            onClick={(e) => {
+              e.preventDefault();
+              openDemoModal();
+            }}
+            className="w-full max-w-xs sm:w-auto sm:max-w-none"
+          >
             Solicitar Demo
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
