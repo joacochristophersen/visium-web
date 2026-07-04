@@ -94,6 +94,12 @@ function DemoSimulationModal({ open, onClose }: { open: boolean; onClose: () => 
 
   const startScan = () => {
     if (!canScan) return;
+    // Alerta de lead en background — la simulación no espera la respuesta
+    void fetch("/api/send-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ direction: address.trim(), email: email.trim() }),
+    }).catch(() => {});
     setPhase("scanning");
     SCAN_LOGS.forEach((_, i) => {
       timers.current.push(setTimeout(() => setLogsShown(i + 1), (i + 1) * LOG_STEP_MS));
