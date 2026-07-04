@@ -52,12 +52,12 @@ const SCAN_LOGS = [
 const LOG_STEP_MS = 1000;
 const SUCCESS_AT_MS = SCAN_LOGS.length * LOG_STEP_MS + 400;
 
-// Reemplazar por el Calendly real del equipo comercial
-const CALENDLY_URL = "https://calendly.com/visium-demo/sesion-de-validacion";
+const EMAIL_RE = /\S+@\S+\.\S+/;
 
 function DemoSimulationModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [phase, setPhase] = useState<Phase>("input");
   const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
   const [logsShown, setLogsShown] = useState(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
@@ -72,6 +72,7 @@ function DemoSimulationModal({ open, onClose }: { open: boolean; onClose: () => 
       clearTimers();
       setPhase("input");
       setAddress("");
+      setEmail("");
       setLogsShown(0);
     }
     return clearTimers;
@@ -89,8 +90,10 @@ function DemoSimulationModal({ open, onClose }: { open: boolean; onClose: () => 
     };
   }, [open, onClose]);
 
+  const canScan = address.trim().length > 0 && EMAIL_RE.test(email.trim());
+
   const startScan = () => {
-    if (!address.trim()) return;
+    if (!canScan) return;
     setPhase("scanning");
     SCAN_LOGS.forEach((_, i) => {
       timers.current.push(setTimeout(() => setLogsShown(i + 1), (i + 1) * LOG_STEP_MS));
@@ -163,9 +166,22 @@ function DemoSimulationModal({ open, onClose }: { open: boolean; onClose: () => 
                       className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[color:var(--text-faint)] focus:border-gold/50"
                     />
                   </label>
+                  <label className="flex flex-col gap-3">
+                    <span className="text-sm leading-relaxed text-[color:var(--text-muted)]">
+                      Email corporativo para recibir el reporte de inteligencia
+                    </span>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && startScan()}
+                      placeholder="ej: nombre@constructora.com"
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[color:var(--text-faint)] focus:border-gold/50"
+                    />
+                  </label>
                   <button
                     onClick={startScan}
-                    disabled={!address.trim()}
+                    disabled={!canScan}
                     className="btn-gold rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     Iniciar Escaneo Espacial
@@ -227,31 +243,21 @@ function DemoSimulationModal({ open, onClose }: { open: boolean; onClose: () => 
                     </p>
                   </div>
                   <p className="text-sm leading-relaxed text-[color:var(--text-primary)]">
-                    Tu simulación personalizada para{" "}
+                    Tu simulación analítica para{" "}
                     <span className="font-medium text-gold">{address.trim()}</span> ha sido
-                    guardada en nuestros servidores. Para activar el renderizado 3D
-                    interactivo en tu pantalla, agendá una sesión de validación con
-                    nuestro equipo técnico.
+                    procesada con éxito. Acabamos de enviar el acceso interactivo y el
+                    reporte de inteligencia espacial directamente a{" "}
+                    <span className="font-medium text-gold">{email.trim()}</span>.
                   </p>
-                  <div className="flex flex-col gap-3 sm:flex-row">
-                    <a
-                      href={CALENDLY_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-gold inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide"
-                    >
-                      Agendar sesión de validación
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-                    <button
-                      onClick={onClose}
-                      className="rounded-full px-6 py-3.5 text-sm text-[color:var(--text-muted)] transition-colors hover:text-white"
-                    >
-                      Cerrar
-                    </button>
-                  </div>
+                  <button
+                    onClick={onClose}
+                    className="btn-gold inline-flex items-center justify-center gap-2 self-start rounded-full px-7 py-3.5 text-sm font-medium tracking-wide"
+                  >
+                    Entendido, revisar mi casilla
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>

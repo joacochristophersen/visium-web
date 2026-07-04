@@ -43,11 +43,11 @@ export function Cursor() {
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[90] h-1.5 w-1.5 rounded-full bg-primary mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[120] h-1.5 w-1.5 rounded-full bg-primary mix-blend-difference"
         style={{ x, y, translateX: "-50%", translateY: "-50%", opacity: hidden ? 0 : 1 }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[90] flex items-center justify-center rounded-full border border-white/40 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[120] flex items-center justify-center rounded-full border border-white/40 mix-blend-difference"
         style={{ x: rx, y: ry, translateX: "-50%", translateY: "-50%" }}
         animate={{
           width: hovering ? 56 : 30,
