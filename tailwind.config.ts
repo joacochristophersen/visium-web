@@ -13,16 +13,15 @@ const config: Config = {
         ink: "#0D0D12",
         panel: "#121218",
         gold: {
-          DEFAULT: "#D4B36A",
-          bright: "#E6C98A",
+          DEFAULT: "#D4AF37",
+          bright: "#F0CB65",
           deep: "#9A7B3A",
         },
         primary: {
-          // Mapped to gold so existing utility classes inherit the new identity.
-          DEFAULT: "#D4B36A",
-          glow: "#E6C98A",
+          DEFAULT: "#D4AF37",
+          glow: "#F0CB65",
         },
-        highlight: "#E6C98A",
+        highlight: "#F0CB65",
         accent: "#F5F5F5",
         lead: {
           hot: "#FF4D4D",
@@ -61,15 +60,15 @@ const config: Config = {
       boxShadow: {
         glass:
           "0 1px 0 0 rgba(255,255,255,0.06) inset, 0 30px 90px -30px rgba(0,0,0,0.85)",
-        glow: "0 0 90px -10px rgba(212,179,106,0.45)",
-        "glow-soft": "0 0 140px -20px rgba(230,201,138,0.35)",
-        gold: "0 0 0 1px rgba(212,179,106,0.25), 0 24px 70px -30px rgba(212,179,106,0.4)",
+        glow: "0 0 90px -10px rgba(212,175,55,0.45)",
+        "glow-soft": "0 0 140px -20px rgba(240,203,101,0.35)",
+        gold: "0 0 0 1px rgba(212,175,55,0.25), 0 24px 70px -30px rgba(212,175,55,0.4)",
       },
       backgroundImage: {
         "radial-fade":
-          "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,179,106,0.16), transparent 70%)",
+          "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,175,55,0.16), transparent 70%)",
         mesh:
-          "radial-gradient(at 18% 8%, rgba(212,179,106,0.12) 0px, transparent 50%), radial-gradient(at 82% 0%, rgba(230,201,138,0.08) 0px, transparent 50%), radial-gradient(at 50% 100%, rgba(18,18,24,0.7) 0px, transparent 60%)",
+          "radial-gradient(at 18% 8%, rgba(212,175,55,0.12) 0px, transparent 50%), radial-gradient(at 82% 0%, rgba(240,203,101,0.08) 0px, transparent 50%), radial-gradient(at 50% 100%, rgba(18,18,24,0.7) 0px, transparent 60%)",
       },
       transitionTimingFunction: {
         spatial: "cubic-bezier(0.16, 1, 0.3, 1)",

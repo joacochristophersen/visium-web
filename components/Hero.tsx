@@ -17,7 +17,7 @@ export function Hero() {
       className="relative flex min-h-[100svh] flex-col items-center justify-center pt-32"
     >
       {/* El video de fondo vive en GlobalVideoCanvas — lienzo continuo sin cortes */}
-      <div className="pointer-events-none absolute inset-0 dotgrid opacity-[0.12] mask-fade-y" />
+      <div className="pointer-events-none absolute inset-0 linegrid opacity-[0.85] mask-fade-y" />
 
       {/* Rieles editoriales — fijos a los costados durante todo el recorrido */}
       <div className="pointer-events-none fixed left-5 top-1/2 z-[2] hidden -translate-y-1/2 lg:block">

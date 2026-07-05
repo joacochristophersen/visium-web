@@ -26,7 +26,7 @@ export function AnimatedCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-20%" });
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 70, damping: 22 });
+  const spring = useSpring(mv, { stiffness: 180, damping: 14, mass: 0.8 });
 
   useEffect(() => {
     if (inView) mv.set(value);
