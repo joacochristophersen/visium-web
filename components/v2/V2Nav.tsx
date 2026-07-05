@@ -30,15 +30,15 @@ export function V2Nav() {
         {/* Wordmark — four-bar mark echoing a light meter */}
         <a href="#top" className="flex items-center gap-2.5 text-white">
           <span aria-hidden className="flex items-end gap-[3px]">
-            <span className="h-2.5 w-[2px] bg-white" />
-            <span className="h-4 w-[2px] bg-white" />
-            <span className="h-3 w-[2px] bg-white" />
-            <span className="h-[18px] w-[2px] bg-white" />
+            <span className="h-2.5 w-[2px] bg-[#D4AF37]" />
+            <span className="h-4 w-[2px] bg-[#D4AF37]" />
+            <span className="h-3 w-[2px] bg-[#F0CB65]" />
+            <span className="h-[18px] w-[2px] bg-[#D4AF37]" />
           </span>
           <span className="text-[16px] font-medium lowercase tracking-[-0.025em]">
             visium
           </span>
-          <span className="text-[11px] font-normal text-[#999999]">5.0</span>
+          <span className="text-[11px] font-normal text-[#D4AF37]">5.0</span>
         </a>
 
         <div className="hidden items-center gap-4 md:flex">
@@ -46,7 +46,7 @@ export function V2Nav() {
             <a
               key={l.label}
               href={l.href}
-              className="px-2 text-[15px] font-medium text-white transition-opacity duration-200 [transition-timing-function:cubic-bezier(0.625,0.05,0,1)] hover:opacity-60"
+              className="px-2 text-[15px] font-medium text-white transition-colors duration-200 [transition-timing-function:cubic-bezier(0.625,0.05,0,1)] hover:text-[#F0CB65]"
             >
               {l.label}
             </a>
