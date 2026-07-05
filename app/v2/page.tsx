@@ -177,8 +177,8 @@ export default function V2Page() {
           />
           <MediaCard
             src="/videos/cocina.mp4"
-            badge="Simulación Solar"
-            title="Luz de invierno, computada para los próximos cien años."
+            badge="Roadmap · Simulación Solar"
+            title="Asoleamiento predictivo — el próximo capítulo del gemelo digital."
           />
         </div>
 
@@ -306,9 +306,11 @@ export default function V2Page() {
           <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
             Cada propiedad se convierte en una fuente de datos. Tu equipo
             prioriza los llamados con VISIUM SCORE™ — como HubSpot y
-            Salesforce, pero con inteligencia inmobiliaria real. Y el
-            asoleamiento predictivo muestra, hora por hora, cómo vive la luz en
-            cada unidad.
+            Salesforce, pero con inteligencia inmobiliaria real.{" "}
+            <span className="text-[#F0CB65]">
+              Medí con datos, no con suerte
+            </span>
+            : cada interacción verificada aumenta la probabilidad de compra.
           </p>
           <div className="mt-14">
             <DashboardShowcase />

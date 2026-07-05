@@ -1,10 +1,9 @@
 import { LEADS, TIER_META, type LeadTier } from "@/data/content";
-import { SolarPanel } from "@/components/v2/SolarPanel";
 
 /* ============================================================
    El entregable — la ventana de trabajo real que recibe el
-   desarrollador: Centro de Leads + métricas + asoleamiento.
-   Server-rendered al 100%; el único JS es el slider solar.
+   desarrollador: Centro de Leads + métricas + precisión de
+   medición. Server-rendered al 100%, cero JS cliente.
    ============================================================ */
 
 const ORDER: LeadTier[] = ["hot", "warm", "mild", "cold"];
@@ -130,8 +129,17 @@ export function DashboardShowcase() {
             </div>
           </div>
 
-          <div className="border-t border-[#333333]">
-            <SolarPanel />
+          {/* Precisión de medición — datos, no suerte */}
+          <div className="border-t border-[#333333] p-5">
+            <p className="mb-4 text-[10px] uppercase tracking-[0.08em] text-[#D4AF37]">
+              Sistema de medición
+            </p>
+            <p className="font-mono text-3xl font-semibold text-[#F0CB65]">±2 cm</p>
+            <p className="mt-3 text-[13px] leading-[1.5] text-[#999999]">
+              Cuando alguien mide, está proyectando su vida en ese espacio.
+              Cada cota verificada es una señal de intención — datos, no
+              suerte.
+            </p>
           </div>
         </div>
       </div>
