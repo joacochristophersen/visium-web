@@ -32,3 +32,4 @@ yarn-error.log*
 
 # video originals (4K backups, too heavy for git)
 .video-originals/
+.mcp.json
