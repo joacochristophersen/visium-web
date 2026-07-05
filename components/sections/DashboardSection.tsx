@@ -146,21 +146,38 @@ export function DashboardSection() {
                 </p>
                 <div className="flex flex-col gap-4">
                   {[
-                    { label: "Tasa de cierre", value: 25, suffix: "%", color: "var(--success)" },
-                    { label: "Visitas evitadas", value: 40, suffix: "%", color: "var(--gold)" },
-                    { label: "Leads HOT detectados", value: 12, suffix: "", color: "var(--lead-hot)" },
+                    { label: "Tasa de cierre", value: 25, suffix: "%", color: "var(--success)", pct: 67 },
+                    { label: "Visitas evitadas", value: 40, suffix: "%", color: "var(--gold)", pct: 82 },
+                    { label: "Leads HOT detectados", value: 12, suffix: "", color: "var(--lead-hot)", pct: 54 },
                   ].map((m) => (
-                    <div key={m.label} className="rounded-2xl border border-white/8 bg-white/[0.02] p-4">
+                    <motion.div
+                      key={m.label}
+                      onMouseMove={(e) => {
+                        const el = e.currentTarget;
+                        const rect = el.getBoundingClientRect();
+                        el.style.setProperty("--mouse-x", `${((e.clientX - rect.left) / rect.width) * 100}%`);
+                        el.style.setProperty("--mouse-y", `${((e.clientY - rect.top) / rect.height) * 100}%`);
+                      }}
+                      whileHover={{ y: -3, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
+                      className="spotlight-card glass rounded-2xl p-4"
+                    >
                       <AnimatedCounter
                         value={m.value}
                         suffix={m.suffix}
                         className="font-mono text-3xl font-semibold"
                       />
                       <p className="mt-1 text-xs text-[color:var(--text-muted)]">{m.label}</p>
-                      <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white/8">
-                        <div className="h-full w-2/3 rounded-full" style={{ background: m.color }} />
+                      <div className="mt-3 h-[3px] w-full overflow-hidden rounded-full bg-white/8">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${m.pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+                          className="h-full rounded-full"
+                          style={{ background: m.color, boxShadow: `0 0 8px ${m.color}` }}
+                        />
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>

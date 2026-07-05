@@ -9,9 +9,9 @@
   --void: #000000;
   --ink: #080808;
   --panel: #0c0c0e;
-  --gold: #d4b36a;
-  --gold-bright: #e6c98a;
-  --gold-deep: #9a7b3a;
+  --gold: #D4AF37;
+  --gold-bright: #F0CB65;
+  --gold-deep: #9A7B3A;
 
   --lead-hot: #ff4d4d;
   --lead-warm: #ff8a00;
@@ -24,7 +24,7 @@
   --text-faint: rgba(245, 245, 245, 0.34);
 
   --glass-bg: rgba(255, 255, 255, 0.035);
-  --glass-border: rgba(212, 179, 106, 0.16);
+  --glass-border: rgba(212, 175, 55, 0.16);
 
   --ease-spatial: cubic-bezier(0.16, 1, 0.3, 1);
   --nav-h: 76px;
@@ -50,7 +50,7 @@ body {
 }
 
 ::selection {
-  background: rgba(212, 179, 106, 0.3);
+  background: rgba(212, 175, 55, 0.3);
   color: #fff;
 }
 
@@ -163,8 +163,8 @@ body {
     transform: translateX(-50%);
     background: radial-gradient(
       ellipse 50% 40% at 50% 50%,
-      rgba(212, 179, 106, 0.18),
-      rgba(230, 201, 138, 0.06) 45%,
+      rgba(212, 175, 55, 0.18),
+      rgba(240, 203, 101, 0.06) 45%,
       transparent 70%
     );
     pointer-events: none;
@@ -172,14 +172,14 @@ body {
   }
 
   .hairline {
-    background: linear-gradient(90deg, transparent, rgba(212, 179, 106, 0.28) 50%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.28) 50%, transparent);
     height: 1px;
   }
 
   .border-gold {
     position: relative;
     background: linear-gradient(var(--ink), var(--ink)) padding-box,
-      linear-gradient(120deg, rgba(212, 179, 106, 0.55), rgba(230, 201, 138, 0.18), transparent 60%) border-box;
+      linear-gradient(120deg, rgba(212, 175, 55, 0.55), rgba(240, 203, 101, 0.18), transparent 60%) border-box;
     border: 1px solid transparent;
   }
 
@@ -197,8 +197,41 @@ body {
   }
 
   .btn-gold {
-    background: linear-gradient(180deg, #e6c98a, #d4b36a);
+    background: linear-gradient(180deg, #F0CB65, #D4AF37);
     color: #0d0d12;
+  }
+
+  /* Spotlight Card — borde dorado conic-gradient que sigue al cursor */
+  .spotlight-card {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+
+  .spotlight-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from 0deg at var(--mouse-x) var(--mouse-y),
+      transparent 0deg,
+      rgba(212, 175, 55, 0) 45deg,
+      rgba(212, 175, 55, 0.8) 90deg,
+      rgba(212, 175, 55, 0) 135deg,
+      transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .spotlight-card:hover::after {
+    opacity: 1;
   }
 }
 
@@ -230,8 +263,15 @@ body {
   }
 
   .dotgrid {
-    background-image: radial-gradient(rgba(212, 179, 106, 0.1) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px);
     background-size: 30px 30px;
+  }
+
+  .linegrid {
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.055) 1px, transparent 1px);
+    background-size: 52px 52px;
   }
 
   .mask-fade-y {
@@ -266,10 +306,10 @@ body {
     linear-gradient(rgba(10, 10, 12, 0.88), rgba(10, 10, 12, 0.88)) padding-box,
     linear-gradient(
       135deg,
-      rgba(212, 179, 106, 0.38),
+      rgba(212, 175, 55, 0.38),
       rgba(255, 255, 255, 0.06) 40%,
-      rgba(212, 179, 106, 0.1) 75%,
-      rgba(230, 201, 138, 0.28)
+      rgba(212, 175, 55, 0.1) 75%,
+      rgba(240, 203, 101, 0.28)
     ) border-box;
   border: 1px solid transparent;
 }
