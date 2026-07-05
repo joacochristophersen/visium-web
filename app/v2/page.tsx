@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { V2Nav } from "@/components/v2/V2Nav";
 import { RequestAccessButton, ACCESS_DIALOG_ID } from "@/components/v2/RequestAccessButton";
 import { requestAccess } from "@/app/v2/actions";
+import { MeasureDemo } from "@/components/v2/MeasureDemo";
+import { DashboardShowcase } from "@/components/v2/DashboardShowcase";
 import { PROBLEM_CARDS, FLOW_STEPS, SCORE_SIGNALS, PLATFORM_MODULES } from "@/data/content";
 import { SITE } from "@/utils/constants";
 
@@ -152,10 +154,6 @@ export default function V2Page() {
             </div>
           ))}
         </div>
-        <p className="mt-14 max-w-2xl text-[20px] leading-[1.5] text-white">
-          No solo mostramos propiedades. Mostramos{" "}
-          <span className="text-[#F0CB65]">quién va a comprarlas</span>.
-        </p>
       </section>
 
       {/* ===== Twins — gemelos digitales ===== */}
@@ -201,6 +199,24 @@ export default function V2Page() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== Demo — Motor de Análisis Comercial ===== */}
+      <section id="demo" className="mx-auto max-w-[1200px] px-5 pb-28">
+        <Label className="mb-10">Demo interactiva · Motor de Análisis Comercial</Label>
+        <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
+          Cada interacción del comprador, una <Serif>señal</Serif> de cierre.
+        </h2>
+        <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
+          <span className="text-[#F0CB65]">VISIUM AI</span> lee cada movimiento
+          del comprador dentro del gemelo digital — mediciones, distancias,
+          validación de espacios — y convierte sus acciones en{" "}
+          <span className="text-[#F0CB65]">Probabilidad de Cierre™</span> para
+          tu equipo. Del primer clic al contrato firmado.
+        </p>
+        <div className="mt-14">
+          <MeasureDemo />
         </div>
       </section>
 
@@ -253,31 +269,50 @@ export default function V2Page() {
 
       {/* ===== Insights — la plataforma completa ===== */}
       <section id="insights" className="mx-auto max-w-[1200px] px-5 pb-28">
-        <Label className="mb-10">Insights · Plataforma</Label>
-        <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
-          Tu pipeline, ordenado por <Serif>intención</Serif> de compra.
-        </h2>
-        <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
-          Cada propiedad se convierte en una fuente de datos. Tu equipo prioriza
-          los llamados con VISIUM SCORE™ — como HubSpot y Salesforce, pero con
-          inteligencia inmobiliaria real.
-        </p>
+        <div id="plataforma" className="scroll-mt-24">
+          <Label className="mb-10">Insights · Plataforma</Label>
+          <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
+            No solo mostramos propiedades. Mostramos{" "}
+            <Serif>quién</Serif> va a comprarlas.
+          </h2>
+          <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
+            Seis módulos que trabajan como un solo sistema operativo de
+            conversión para tu inmobiliaria.
+          </p>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {PLATFORM_MODULES.map((m) => (
-            <div
-              key={m.name}
-              className={`rounded-[10px] bg-[#202020] p-8 transition-shadow duration-300 ${EASE} hover:shadow-[inset_0_1px_0_rgba(240,203,101,0.32),inset_0_0_0_1px_rgba(212,175,55,0.28)]`}
-            >
-              <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#D4AF37]">
-                {m.tag}
-              </p>
-              <h3 className="mt-3 text-[21px] font-medium leading-[1.2] text-white">{m.name}</h3>
-              <p className="mt-4 border-t border-[#333333] pt-4 text-[16px] leading-[1.5] text-[#999999]">
-                {m.description}
-              </p>
-            </div>
-          ))}
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {PLATFORM_MODULES.map((m) => (
+              <div
+                key={m.name}
+                className={`rounded-[10px] bg-[#202020] p-8 transition-shadow duration-300 ${EASE} ${RIM_GOLD}`}
+              >
+                <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#D4AF37]">
+                  {m.tag}
+                </p>
+                <h3 className="mt-3 text-[21px] font-medium leading-[1.2] text-white">{m.name}</h3>
+                <p className="mt-4 border-t border-[#333333] pt-4 text-[16px] leading-[1.5] text-[#999999]">
+                  {m.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* El entregable — dashboard real del desarrollador */}
+        <div id="dashboard" className="mt-24 scroll-mt-24">
+          <h3 className="max-w-3xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-light leading-[1.2] text-white">
+            Tu pipeline, ordenado por <Serif>intención</Serif> de compra.
+          </h3>
+          <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
+            Cada propiedad se convierte en una fuente de datos. Tu equipo
+            prioriza los llamados con VISIUM SCORE™ — como HubSpot y
+            Salesforce, pero con inteligencia inmobiliaria real. Y el
+            asoleamiento predictivo muestra, hora por hora, cómo vive la luz en
+            cada unidad.
+          </p>
+          <div className="mt-14">
+            <DashboardShowcase />
+          </div>
         </div>
       </section>
 

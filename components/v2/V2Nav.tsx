@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { RequestAccessButton } from "@/components/v2/RequestAccessButton";
+import { VLogo } from "@/components/v2/VLogo";
 
 const LINKS = [
   { label: "Twins", href: "#twins" },
@@ -27,14 +28,9 @@ export function V2Nav() {
       }`}
     >
       <nav className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-5">
-        {/* Wordmark — four-bar mark echoing a light meter */}
+        {/* La "V corta" — marca primaria en oro pulido */}
         <a href="#top" className="flex items-center gap-2.5 text-white">
-          <span aria-hidden className="flex items-end gap-[3px]">
-            <span className="h-2.5 w-[2px] bg-[#D4AF37]" />
-            <span className="h-4 w-[2px] bg-[#D4AF37]" />
-            <span className="h-3 w-[2px] bg-[#F0CB65]" />
-            <span className="h-[18px] w-[2px] bg-[#D4AF37]" />
-          </span>
+          <VLogo size={26} uid="nav" />
           <span className="text-[16px] font-medium lowercase tracking-[-0.025em]">
             visium
           </span>
