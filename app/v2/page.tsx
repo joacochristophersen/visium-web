@@ -120,7 +120,8 @@ export default function V2Page() {
           </div>
 
           <a
-            href="#twins"
+            href="#demo"
+            aria-label="Ir a la demo interactiva del simulador"
             className={`flex shrink-0 flex-col items-center gap-3 transition-opacity duration-300 ${EASE} hover:opacity-70`}
           >
             <span className="flex h-20 w-20 items-center justify-center rounded-full border border-[#D4AF37] bg-[rgba(212,175,55,0.08)]">
@@ -157,7 +158,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Twins — gemelos digitales ===== */}
-      <section id="twins" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="twins" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Twins · Gaussian Splatting</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           We don&rsquo;t model reality. We capture its <Serif>light</Serif>.
@@ -203,7 +204,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Demo — Motor de Análisis Comercial ===== */}
-      <section id="demo" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="demo" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Demo interactiva · Motor de Análisis Comercial</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Cada interacción del comprador, una <Serif>señal</Serif> de cierre.
@@ -221,7 +222,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Intelligence — VISIUM SCORE™ ===== */}
-      <section id="intelligence" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="intelligence" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Intelligence · VISIUM SCORE™</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           No analizamos clics. Analizamos <Serif>intención</Serif>.
@@ -268,7 +269,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Insights — la plataforma completa ===== */}
-      <section id="insights" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="insights" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <div id="plataforma" className="scroll-mt-24">
           <Label className="mb-10">Insights · Plataforma</Label>
           <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
@@ -319,7 +320,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Access — la primera visita que importa ===== */}
-      <section id="access" className="mx-auto max-w-[1200px] px-5 py-28">
+      <section id="access" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 py-28">
         <Label className="mb-10">Acceso corporativo</Label>
         <h2 className="max-w-4xl text-[clamp(2.25rem,5vw,3.5625rem)] font-medium leading-[1.1] tracking-[-0.05em] text-white">
           La primera visita debería ser <Serif>la que importa</Serif>.
