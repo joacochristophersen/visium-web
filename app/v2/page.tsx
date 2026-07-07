@@ -3,6 +3,7 @@ import { V2Nav } from "@/components/v2/V2Nav";
 import { RequestAccessButton, ACCESS_DIALOG_ID } from "@/components/v2/RequestAccessButton";
 import { requestAccess } from "@/app/v2/actions";
 import { MeasureDemo } from "@/components/v2/MeasureDemo";
+import { TwinLauncher } from "@/components/v2/TwinLauncher";
 import { DashboardShowcase } from "@/components/v2/DashboardShowcase";
 import { PROBLEM_CARDS, FLOW_STEPS, SCORE_SIGNALS, PLATFORM_MODULES } from "@/data/content";
 import { SITE } from "@/utils/constants";
@@ -120,7 +121,8 @@ export default function V2Page() {
           </div>
 
           <a
-            href="#twins"
+            href="#demo"
+            aria-label="Ir a la demo interactiva del simulador"
             className={`flex shrink-0 flex-col items-center gap-3 transition-opacity duration-300 ${EASE} hover:opacity-70`}
           >
             <span className="flex h-20 w-20 items-center justify-center rounded-full border border-[#D4AF37] bg-[rgba(212,175,55,0.08)]">
@@ -157,7 +159,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Twins — gemelos digitales ===== */}
-      <section id="twins" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="twins" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Twins · Gaussian Splatting</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           We don&rsquo;t model reality. We capture its <Serif>light</Serif>.
@@ -177,8 +179,8 @@ export default function V2Page() {
           />
           <MediaCard
             src="/videos/cocina.mp4"
-            badge="Simulación Solar"
-            title="Luz de invierno, computada para los próximos cien años."
+            badge="Roadmap · Simulación Solar"
+            title="Asoleamiento predictivo — el próximo capítulo del gemelo digital."
           />
         </div>
 
@@ -203,7 +205,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Demo — Motor de Análisis Comercial ===== */}
-      <section id="demo" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="demo" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Demo interactiva · Motor de Análisis Comercial</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Cada interacción del comprador, una <Serif>señal</Serif> de cierre.
@@ -220,8 +222,27 @@ export default function V2Page() {
         </div>
       </section>
 
+      {/* ===== Recorrido — el gemelo real, en primera persona ===== */}
+      <section id="recorrido" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
+        <Label className="mb-10">Recorrido virtual · Gemelo real</Label>
+        <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
+          Caminá un escaneo <Serif>real</Serif>.
+        </h2>
+        <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
+          Esto no es un render: es un departamento real capturado con un
+          iPhone y procesado por el pipeline espacial de VISIUM — ruido
+          eliminado, 1,368 agujeros sellados, malla 100% estanca comprimida
+          con Draco:{" "}
+          <span className="text-[#F0CB65]">de 29.7 MB a 0.93 MB</span>. Entrá
+          y recorrelo como en un videojuego.
+        </p>
+        <div className="mt-14">
+          <TwinLauncher />
+        </div>
+      </section>
+
       {/* ===== Intelligence — VISIUM SCORE™ ===== */}
-      <section id="intelligence" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="intelligence" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Intelligence · VISIUM SCORE™</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           No analizamos clics. Analizamos <Serif>intención</Serif>.
@@ -268,7 +289,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Insights — la plataforma completa ===== */}
-      <section id="insights" className="mx-auto max-w-[1200px] px-5 pb-28">
+      <section id="insights" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <div id="plataforma" className="scroll-mt-24">
           <Label className="mb-10">Insights · Plataforma</Label>
           <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
@@ -306,9 +327,11 @@ export default function V2Page() {
           <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
             Cada propiedad se convierte en una fuente de datos. Tu equipo
             prioriza los llamados con VISIUM SCORE™ — como HubSpot y
-            Salesforce, pero con inteligencia inmobiliaria real. Y el
-            asoleamiento predictivo muestra, hora por hora, cómo vive la luz en
-            cada unidad.
+            Salesforce, pero con inteligencia inmobiliaria real.{" "}
+            <span className="text-[#F0CB65]">
+              Medí con datos, no con suerte
+            </span>
+            : cada interacción verificada aumenta la probabilidad de compra.
           </p>
           <div className="mt-14">
             <DashboardShowcase />
@@ -317,7 +340,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Access — la primera visita que importa ===== */}
-      <section id="access" className="mx-auto max-w-[1200px] px-5 py-28">
+      <section id="access" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 py-28">
         <Label className="mb-10">Acceso corporativo</Label>
         <h2 className="max-w-4xl text-[clamp(2.25rem,5vw,3.5625rem)] font-medium leading-[1.1] tracking-[-0.05em] text-white">
           La primera visita debería ser <Serif>la que importa</Serif>.
