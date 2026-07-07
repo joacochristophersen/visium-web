@@ -3,6 +3,7 @@ import { V2Nav } from "@/components/v2/V2Nav";
 import { RequestAccessButton, ACCESS_DIALOG_ID } from "@/components/v2/RequestAccessButton";
 import { requestAccess } from "@/app/v2/actions";
 import { MeasureDemo } from "@/components/v2/MeasureDemo";
+import { TwinLauncher } from "@/components/v2/TwinLauncher";
 import { DashboardShowcase } from "@/components/v2/DashboardShowcase";
 import { PROBLEM_CARDS, FLOW_STEPS, SCORE_SIGNALS, PLATFORM_MODULES } from "@/data/content";
 import { SITE } from "@/utils/constants";
@@ -218,6 +219,24 @@ export default function V2Page() {
         </p>
         <div className="mt-14">
           <MeasureDemo />
+        </div>
+      </section>
+
+      {/* ===== Recorrido — el gemelo real, en primera persona ===== */}
+      <section id="recorrido" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
+        <Label className="mb-10">Recorrido virtual · Gemelo real</Label>
+        <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
+          Caminá un escaneo <Serif>real</Serif>.
+        </h2>
+        <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
+          Esto no es un render: es un departamento real capturado con un
+          iPhone y procesado por el pipeline espacial de VISIUM — malla
+          comprimida con Draco y texturas optimizadas,{" "}
+          <span className="text-[#F0CB65]">de 29.7 MB a 1.3 MB</span>. Entrá y
+          recorrelo como en un videojuego.
+        </p>
+        <div className="mt-14">
+          <TwinLauncher />
         </div>
       </section>
 
