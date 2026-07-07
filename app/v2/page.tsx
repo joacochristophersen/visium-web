@@ -230,10 +230,11 @@ export default function V2Page() {
         </h2>
         <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
           Esto no es un render: es un departamento real capturado con un
-          iPhone y procesado por el pipeline espacial de VISIUM — malla
-          comprimida con Draco y texturas optimizadas,{" "}
-          <span className="text-[#F0CB65]">de 29.7 MB a 1.3 MB</span>. Entrá y
-          recorrelo como en un videojuego.
+          iPhone y procesado por el pipeline espacial de VISIUM — ruido
+          eliminado, 1,368 agujeros sellados, malla 100% estanca comprimida
+          con Draco:{" "}
+          <span className="text-[#F0CB65]">de 29.7 MB a 0.93 MB</span>. Entrá
+          y recorrelo como en un videojuego.
         </p>
         <div className="mt-14">
           <TwinLauncher />

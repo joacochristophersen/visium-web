@@ -50,7 +50,7 @@ export function TwinLauncher() {
           </span>
         </div>
         <span className="hidden items-center gap-2 rounded-full border border-[#D4AF37]/25 bg-[#D4AF37]/[0.05] px-3 py-1 font-mono text-[10px] text-[#D4AF37] sm:inline-flex">
-          .glb · Draco · 1.3 MB
+          .glb · Draco · 0.93 MB · estanco
         </span>
       </div>
 
@@ -68,7 +68,8 @@ export function TwinLauncher() {
                 Departamento escaneado · Buenos Aires
               </p>
               <p className="text-[12px] text-[#999999]">
-                De 29.7 MB crudos a 1.3 MB — procesado por el pipeline espacial VISIUM
+                De 29.7 MB crudos a 0.93 MB — 1,368 agujeros sellados por el
+                pipeline espacial VISIUM
               </p>
             </div>
             <button
