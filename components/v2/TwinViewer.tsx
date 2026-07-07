@@ -36,6 +36,31 @@ const MOVE_CODES = new Set([
 function Model({ onReady }: { onReady: (box: THREE.Box3) => void }) {
   const { scene } = useGLTF(MODEL_URL, true);
   useEffect(() => {
+    /* El pipeline pierde KHR_materials_unlit en el roundtrip por OBJ: el
+       material vuelve como PBR que exige luces. Para escaneos la luz ya
+       viene horneada en la textura → MeshBasicMaterial es lo correcto.
+       DoubleSide blinda contra caras con winding invertido de PyMeshLab. */
+    scene.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (!mesh.isMesh) return;
+      const toUnlit = (m: THREE.Material): THREE.Material => {
+        if ((m as THREE.MeshBasicMaterial).isMeshBasicMaterial) {
+          m.side = THREE.DoubleSide;
+          return m;
+        }
+        const std = m as THREE.MeshStandardMaterial;
+        const basic = new THREE.MeshBasicMaterial({
+          map: std.map ?? null,
+          side: THREE.DoubleSide,
+        });
+        if (!std.map) basic.color.set(0x8a8a8a); // parches sin textura: gris neutro
+        m.dispose();
+        return basic;
+      };
+      mesh.material = Array.isArray(mesh.material)
+        ? mesh.material.map(toUnlit)
+        : toUnlit(mesh.material);
+    });
     onReady(new THREE.Box3().setFromObject(scene));
   }, [scene, onReady]);
   return <primitive object={scene} />;
@@ -151,6 +176,9 @@ export default function TwinViewer() {
           gl.setClearColor("#050505");
         }}
       >
+        {/* Respaldo por si algún material queda PBR (los basic las ignoran) */}
+        <ambientLight intensity={1.6} />
+        <directionalLight position={[4, 8, 3]} intensity={1.1} />
         <Suspense fallback={null}>
           <Model
             onReady={(box) => {
