@@ -25,8 +25,8 @@ const TwinViewer = dynamic(() => import("@/components/v2/TwinViewer"), {
 });
 
 const KEYS = [
-  { k: "W A S D / ↑ ↓ ← →", v: "caminar" },
-  { k: "mouse", v: "mirar" },
+  { k: "W A S D", v: "caminar" },
+  { k: "mouse · ↑ ↓ ← →", v: "mirar" },
   { k: "Shift", v: "correr" },
   { k: "R / F", v: "subir / bajar" },
   { k: "Esc", v: "soltar" },

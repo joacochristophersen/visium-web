@@ -8,9 +8,10 @@ import * as THREE from "three";
 /* ============================================================
    Visor first-person del gemelo digital.
    - GLB con Draco (decoder desde CDN de Google vía drei)
-   - WASD + Flechas (x/z) · R sube / F baja · Shift corre
-   - Amortiguación exponencial: la cámara acelera y frena como
-     una filmación real, nunca de golpe
+   - WASD camina (x/z) · Flechas rotan la mirada (pitch/yaw)
+   - R sube / F baja · Shift corre · mouse mira (PointerLock)
+   - Amortiguación exponencial en traslación Y rotación: la
+     cámara acelera, panea y frena como una filmación real
    - <Canvas flat>: los escaneos traen la luz horneada en las
      texturas (KHR_materials_unlit) — el tone mapping ACES por
      defecto lavaría los colores reales
@@ -18,10 +19,12 @@ import * as THREE from "three";
 
 const MODEL_URL = "/models/casa1.glb";
 const EYE_HEIGHT = 1.6;
-const WALK_SPEED = 2.2;
-const RUN_SPEED = 4.6;
-const VERTICAL_SPEED = 1.8;
+const WALK_SPEED = 1.9; // paseo contemplativo premium (antes 2.2)
+const RUN_SPEED = 4.2;
+const VERTICAL_SPEED = 2.2; // R/F un toque más ágil (antes 1.8)
 const DAMPING = 7; // 1/s — mayor = frena antes
+const ROT_SPEED = 1.4; // rad/s — paneo suave con flechas
+const PITCH_LIMIT = THREE.MathUtils.degToRad(85); // sin vuelta carnero
 
 /* Teclas de movimiento: se bloquea su acción por defecto (scroll) al navegar */
 const MOVE_CODES = new Set([
@@ -42,6 +45,9 @@ function FirstPersonRig({ locked }: { locked: boolean }) {
   const { camera } = useThree();
   const keys = useRef<Set<string>>(new Set());
   const vel = useRef(new THREE.Vector3());
+  /* Velocidad angular (x = pitch, y = yaw) — misma inercia que la traslación */
+  const rotVel = useRef(new THREE.Vector2());
+  const euler = useRef(new THREE.Euler(0, 0, 0, "YXZ"));
   const lockedRef = useRef(locked);
   lockedRef.current = locked;
 
@@ -63,8 +69,28 @@ function FirstPersonRig({ locked }: { locked: boolean }) {
   useFrame((_, dt) => {
     const k = keys.current;
     const speed = k.has("ShiftLeft") || k.has("ShiftRight") ? RUN_SPEED : WALK_SPEED;
+    const t = 1 - Math.exp(-DAMPING * dt);
 
-    /* Dirección deseada en el plano x/z, relativa a dónde mira la cámara */
+    /* ── Rotación con flechas: paneo cinematográfico amortiguado ── */
+    const wishRot = new THREE.Vector2();
+    if (lockedRef.current) {
+      if (k.has("ArrowUp")) wishRot.x += ROT_SPEED;
+      if (k.has("ArrowDown")) wishRot.x -= ROT_SPEED;
+      if (k.has("ArrowLeft")) wishRot.y += ROT_SPEED;
+      if (k.has("ArrowRight")) wishRot.y -= ROT_SPEED;
+    }
+    rotVel.current.lerp(wishRot, t);
+    if (rotVel.current.lengthSq() > 1e-7) {
+      /* YXZ: el mismo orden que usa PointerLockControls — ambos inputs
+         escriben sobre el quaternion y conviven sin pisarse */
+      const e = euler.current.setFromQuaternion(camera.quaternion);
+      e.y += rotVel.current.y * dt;
+      e.x = THREE.MathUtils.clamp(e.x + rotVel.current.x * dt, -PITCH_LIMIT, PITCH_LIMIT);
+      e.z = 0;
+      camera.quaternion.setFromEuler(e);
+    }
+
+    /* ── Traslación: WASD en x/z relativo a la mirada, R/F en y ── */
     const fwd = new THREE.Vector3();
     camera.getWorldDirection(fwd);
     fwd.y = 0;
@@ -73,17 +99,16 @@ function FirstPersonRig({ locked }: { locked: boolean }) {
 
     const wish = new THREE.Vector3();
     if (lockedRef.current) {
-      if (k.has("KeyW") || k.has("ArrowUp")) wish.add(fwd);
-      if (k.has("KeyS") || k.has("ArrowDown")) wish.sub(fwd);
-      if (k.has("KeyD") || k.has("ArrowRight")) wish.add(right);
-      if (k.has("KeyA") || k.has("ArrowLeft")) wish.sub(right);
+      if (k.has("KeyW")) wish.add(fwd);
+      if (k.has("KeyS")) wish.sub(fwd);
+      if (k.has("KeyD")) wish.add(right);
+      if (k.has("KeyA")) wish.sub(right);
       if (wish.lengthSq() > 0) wish.normalize().multiplyScalar(speed);
       if (k.has("KeyR")) wish.y += VERTICAL_SPEED;
       if (k.has("KeyF")) wish.y -= VERTICAL_SPEED;
     }
 
     /* Amortiguación exponencial — independiente del framerate */
-    const t = 1 - Math.exp(-DAMPING * dt);
     vel.current.lerp(wish, t);
     camera.position.addScaledVector(vel.current, dt);
   });
