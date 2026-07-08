@@ -5,7 +5,7 @@ import { requestAccess, requestViabilityReport } from "@/app/v2/actions";
 import { MeasureDemo } from "@/components/v2/MeasureDemo";
 import { TwinLauncher } from "@/components/v2/TwinLauncher";
 import { DashboardShowcase } from "@/components/v2/DashboardShowcase";
-import { PROBLEM_CARDS, FLOW_STEPS, SCORE_SIGNALS, PLATFORM_MODULES } from "@/data/content";
+import { FLOW_STEPS, SCORE_SIGNALS, PLATFORM_MODULES } from "@/data/content";
 import { SITE } from "@/utils/constants";
 
 export const metadata: Metadata = {
@@ -101,6 +101,25 @@ const METRICS = [
   { value: "40%", label: "Visitas presenciales evitadas" },
 ];
 
+// Diagnóstico dirigido al desarrollador, no al comprador final — estilo InArch.
+const PAIN_POINTS = [
+  {
+    title: "Preventas estancadas",
+    detail:
+      "Los ciclos de venta superan los tiempos de financiación, poniendo en riesgo el cronograma de obra.",
+  },
+  {
+    title: "Ceguera de mercado",
+    detail:
+      "Invierten fortunas en marketing sin entender qué unidad o atributo del activo motiva realmente la decisión de inversión.",
+  },
+  {
+    title: "El modelo tradicional es analógico",
+    detail:
+      "Renders estáticos que no generan confianza financiera ni certeza sobre el producto final.",
+  },
+];
+
 // Estáticos por ahora — reemplazar por datos en vivo del motor de scoring.
 const DEMO_KPIS = [
   { value: "82%", label: "Índice de Interés" },
@@ -166,14 +185,14 @@ export default function V2Page() {
         </div>
       </section>
 
-      {/* ===== El problema — por qué existe Visium ===== */}
+      {/* ===== El problema — diagnóstico dirigido al desarrollador ===== */}
       <section className="mx-auto max-w-[1200px] px-5 py-36">
         <Label className="mb-10">El problema</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
-          Buscar propiedades sigue <Serif>roto</Serif>.
+          El diagnóstico es <Serif>financiero</Serif>, no estético.
         </h2>
         <div className="mt-14 grid gap-4 sm:grid-cols-3">
-          {PROBLEM_CARDS.map((c) => (
+          {PAIN_POINTS.map((c) => (
             <div
               key={c.title}
               className={`rounded-[10px] bg-[#202020] p-8 transition-shadow duration-300 ${EASE} ${RIM_GOLD}`}
@@ -187,15 +206,34 @@ export default function V2Page() {
         </div>
       </section>
 
+      {/* ===== La solución de VISIUM — ingeniería, no marketing ===== */}
+      <section className="mx-auto max-w-[1200px] px-5 pb-36">
+        <Label className="mb-10">La solución de VISIUM</Label>
+        <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
+          Inteligencia de <Serif>Conversión</Serif>.
+        </h2>
+        <div className="mt-10 max-w-3xl border-l-2 border-[#D4AF37] pl-6">
+          <p className="text-[22px] font-light leading-[1.5] text-white sm:text-[26px]">
+            Sistema de aceleración de preventas mediante Gemelos Digitales de
+            Alta Fidelidad y Analítica de Comportamiento.
+          </p>
+        </div>
+        <p className="mt-8 max-w-2xl text-[18px] leading-[1.6] text-[#999999]">
+          Reducimos la incertidumbre del inversor y optimizamos el flujo de
+          caja mediante la medición de intención de compra real en activos
+          digitales.
+        </p>
+      </section>
+
       {/* ===== Twins — gemelos digitales ===== */}
       <section id="twins" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
-        <Label className="mb-10">Gemelo Digital de Inteligencia Inmobiliaria</Label>
+        <Label className="mb-10">Gemelo Digital de Alta Fidelidad</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           We don&rsquo;t model reality. We capture its <Serif>light</Serif>.
         </h2>
         <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
-          No es un tour, es un activo financiero medible. La Plataforma de
-          Inteligencia Espacial reconstruye cada propiedad como un gemelo
+          No es un render, es un activo financiero medible. La Plataforma de
+          Inteligencia Espacial reconstruye cada unidad como un gemelo
           digital fotorrealista — luz real, materiales reales, proporciones
           verificables desde cualquier dispositivo.
         </p>
@@ -237,9 +275,8 @@ export default function V2Page() {
       <section id="demo" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
         <Label className="mb-10">Demo interactiva · Motor de Análisis Comercial</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
-          Panel de Aceleración:{" "}
-          <span className="font-medium text-[#F0CB65]">Unidad Modelo</span>{" "}
-          (Preventa)
+          Dashboard de Gestión de Activo —{" "}
+          <span className="font-medium text-[#F0CB65]">Unidad Modelo</span>
         </h2>
         <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
           <span className="text-[#F0CB65]">VISIUM AI</span> lee cada movimiento
@@ -248,9 +285,17 @@ export default function V2Page() {
           <span className="text-[#F0CB65]">Probabilidad de Cierre™</span> para
           tu equipo. Del primer clic al contrato firmado.
         </p>
+
+        <div className="mt-8">
+          <RequestAccessButton
+            label="Solicitar Piloto de Aceleración"
+            className="h-12 px-8 text-[15px]"
+          />
+        </div>
+
         {/* Métricas de Activo — el visor deja de ser un modelo y pasa a ser
             información financiera del desarrollo */}
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-6 rounded-[10px] border border-[#D4AF37]/25 bg-[#141414] px-6 py-4">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-6 rounded-[10px] border border-[#D4AF37]/25 bg-[#141414] px-6 py-4">
           <div className="flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
               <rect x="5" y="11" width="14" height="9" rx="1.5" stroke="#D4AF37" strokeWidth="1.6" />
@@ -346,7 +391,7 @@ export default function V2Page() {
         <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
           Cada propiedad recorrida genera señales de comportamiento. VISIUM
           SCORE™ las convierte en una predicción de intención de compra — el
-          activo más valioso de tu inmobiliaria.
+          activo más valioso de tu pipeline de fondeo.
         </p>
 
         <div className="mt-10 max-w-2xl border-l border-[#D4AF37]/30 py-1 pl-6">
@@ -405,7 +450,7 @@ export default function V2Page() {
           </h2>
           <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
             Seis módulos que trabajan como un solo sistema operativo de
-            conversión para tu inmobiliaria.
+            conversión para tu pipeline de fondeo.
           </p>
 
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -435,7 +480,7 @@ export default function V2Page() {
           <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
             Cada propiedad se convierte en una fuente de datos. Tu equipo
             prioriza los llamados con VISIUM SCORE™ — como HubSpot y
-            Salesforce, pero con inteligencia inmobiliaria real.{" "}
+            Salesforce, pero con inteligencia de activos real.{" "}
             <span className="text-[#F0CB65]">
               Medí con datos, no con suerte
             </span>
