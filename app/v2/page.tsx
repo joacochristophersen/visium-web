@@ -9,7 +9,7 @@ import { PROBLEM_CARDS, FLOW_STEPS, SCORE_SIGNALS, PLATFORM_MODULES } from "@/da
 import { SITE } from "@/utils/constants";
 
 export const metadata: Metadata = {
-  title: `${SITE.name} — ${SITE.tagline}`,
+  title: `${SITE.name} — Inteligencia de Aceleración de Preventa`,
   description: SITE.description,
 };
 
@@ -92,6 +92,13 @@ const METRICS = [
   { value: "40%", label: "Visitas presenciales evitadas" },
 ];
 
+// Estáticos por ahora — reemplazar por datos en vivo del motor de scoring.
+const DEMO_KPIS = [
+  { value: "82%", label: "Índice de Interés" },
+  { value: "14", label: "Leads Calificados" },
+  { value: "3m 12s", label: "Tiempo de Persistencia" },
+];
+
 export default function V2Page() {
   return (
     <main id="top" className="min-h-screen bg-black text-white">
@@ -113,16 +120,18 @@ export default function V2Page() {
           <div>
             <Label className="mb-6">Walk Through Reality · Spatial Intelligence Platform</Label>
             <h1 className="max-w-4xl text-[clamp(3rem,8vw,8rem)] font-medium leading-[1.0] tracking-[-0.05em] text-white">
-              Vendemos <Serif>decisiones</Serif>.
+              Aceleramos su <Serif>Preventa</Serif> con Inteligencia Espacial.
             </h1>
             <p className="mt-8 max-w-xl text-[20px] leading-[1.5] text-[#999999]">
-              {SITE.subhead}
+              Transformamos visitantes en compradores calificados mediante
+              datos reales de interés. La herramienta que los desarrolladores
+              inmobiliarios usan para asegurar su fondeo.
             </p>
           </div>
 
           <a
             href="#demo"
-            aria-label="Ir a la demo interactiva del simulador"
+            aria-label="Ir a la demo de aceleración de preventa"
             className={`flex shrink-0 flex-col items-center gap-3 transition-opacity duration-300 ${EASE} hover:opacity-70`}
           >
             <span className="flex h-20 w-20 items-center justify-center rounded-full border border-[#D4AF37] bg-[rgba(212,175,55,0.08)]">
@@ -131,7 +140,7 @@ export default function V2Page() {
               </svg>
             </span>
             <span className="text-[13px] font-normal uppercase tracking-[0.03em] text-[#F0CB65]">
-              Ver la simulación
+              Ver demo de aceleración
             </span>
           </a>
         </div>
@@ -165,10 +174,10 @@ export default function V2Page() {
           We don&rsquo;t model reality. We capture its <Serif>light</Serif>.
         </h2>
         <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
-          Not a tour. A living property OS. Cada recorrido reconstruye la
-          propiedad como un gemelo digital fotorrealista y medible — luz real,
-          materiales reales, proporciones verificables desde cualquier
-          dispositivo.
+          No es un tour, es un activo financiero medible. La Plataforma de
+          Inteligencia Espacial reconstruye cada propiedad como un gemelo
+          digital fotorrealista — luz real, materiales reales, proporciones
+          verificables desde cualquier dispositivo.
         </p>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2">
@@ -208,7 +217,9 @@ export default function V2Page() {
       <section id="demo" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
         <Label className="mb-10">Demo interactiva · Motor de Análisis Comercial</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
-          Cada interacción del comprador, una <Serif>señal</Serif> de cierre.
+          Panel de Aceleración:{" "}
+          <span className="font-medium text-[#F0CB65]">Unidad Modelo</span>{" "}
+          (Preventa)
         </h2>
         <p className="mt-8 max-w-2xl text-[20px] leading-[1.5] text-[#999999]">
           <span className="text-[#F0CB65]">VISIUM AI</span> lee cada movimiento
@@ -220,11 +231,31 @@ export default function V2Page() {
         <div className="mt-14">
           <MeasureDemo />
         </div>
+
+        {/* KPIs de Conversión en Tiempo Real — el valor que ve el desarrollador */}
+        <div className="mt-10">
+          <Label className="mb-6">KPIs de Conversión en Tiempo Real</Label>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {DEMO_KPIS.map((k) => (
+              <div
+                key={k.label}
+                className={`rounded-[10px] bg-[#202020] p-6 transition-shadow duration-300 ${EASE} ${RIM_GOLD}`}
+              >
+                <p className="text-[clamp(1.75rem,3vw,2.5rem)] font-light leading-none tracking-[-0.03em] text-[#F0CB65]">
+                  {k.value}
+                </p>
+                <p className="mt-3 border-t border-[#333333] pt-3 text-[12px] font-medium uppercase leading-[1.5] tracking-[0.03em] text-[#999999]">
+                  {k.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* ===== Recorrido — el gemelo real, en primera persona ===== */}
+      {/* ===== Gemelo Digital de Aceleración — escaneo real, en primera persona ===== */}
       <section id="recorrido" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
-        <Label className="mb-10">Recorrido virtual · Gemelo real</Label>
+        <Label className="mb-10">Gemelo Digital de Aceleración · Escaneo real</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Caminá un escaneo <Serif>real</Serif>.
         </h2>
@@ -234,7 +265,7 @@ export default function V2Page() {
           eliminado, 1,368 agujeros sellados, malla 100% estanca comprimida
           con Draco:{" "}
           <span className="text-[#F0CB65]">de 29.7 MB a 0.93 MB</span>. Entrá
-          y recorrelo como en un videojuego.
+          y explorá la Plataforma de Inteligencia Espacial.
         </p>
         <div className="mt-14">
           <TwinLauncher />
@@ -360,7 +391,7 @@ export default function V2Page() {
       <footer className="border-t border-[#333333]">
         <div className="mx-auto max-w-[1200px] px-5 py-24">
           <p className="text-[clamp(3rem,9vw,8rem)] font-medium leading-[1.0] tracking-[-0.05em] text-white">
-            Vendemos <Serif>decisiones</Serif>, no tours.
+            Aceleramos su <Serif>Preventa</Serif>.
           </p>
           <div className="mt-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap gap-6">

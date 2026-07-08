@@ -39,7 +39,7 @@ export function TwinLauncher() {
             <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
           </span>
           <span className="ml-2 font-mono text-[11px] text-[#999999]/60">
-            VISIUM · Gemelo Digital — Recorrido en primera persona
+            VISIUM · Gemelo Digital de Aceleración — primera persona
           </span>
         </div>
         <span className="hidden items-center gap-2 rounded-full border border-[#D4AF37]/25 bg-[#D4AF37]/[0.05] px-3 py-1 font-mono text-[10px] text-[#D4AF37] sm:inline-flex">
@@ -75,7 +75,7 @@ export function TwinLauncher() {
               </span>
             </span>
             <span className="text-[13px] font-medium tracking-wide text-white transition-colors group-hover:text-[#F0CB65]">
-              INICIAR RECORRIDO
+              INICIAR GEMELO DIGITAL
             </span>
           </button>
         </div>
