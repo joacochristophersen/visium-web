@@ -167,7 +167,7 @@ export default function TwinViewer() {
   const spawnRef = useRef<THREE.Vector3 | null>(null);
 
   return (
-    <div className="relative h-full w-full">
+    <div className="twin-viewer-stage relative h-full w-full">
       <Canvas
         flat
         dpr={[1, 1.75]}
@@ -191,6 +191,7 @@ export default function TwinViewer() {
         <FirstPersonRig locked={locked} />
         <PointerLockControls
           ref={controlsRef}
+          selector=".twin-viewer-stage"
           onLock={() => setLocked(true)}
           onUnlock={() => setLocked(false)}
         />
