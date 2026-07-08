@@ -4,6 +4,9 @@
    ARCHITECTURE.md para el diseño completo del flujo.
    ============================================================ */
 
+import type { WallDetectionResult } from "./wall-detection";
+import type { KeyframeExtractionResult } from "./keyframe-extraction";
+
 export type PropertyPackage = {
   sourcePropertyId?: string;
   floorplanImageUrl: string;
@@ -30,6 +33,13 @@ export type ProcessingJob = {
   input: PropertyPackage;
   steps: PipelineStep[];
   createdAt: string;
+  /* Se completa de forma asíncrona (ver after() en route.ts) a medida que
+     cada paso termina — puede estar parcialmente vacío mientras el job
+     está "processing". */
+  result?: {
+    walls?: WallDetectionResult;
+    keyframes?: KeyframeExtractionResult;
+  };
 };
 
 /* Orden y metadata de los pasos del pipeline — el estado real de cada

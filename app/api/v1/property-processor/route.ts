@@ -1,23 +1,59 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import {
   PIPELINE_STEPS,
   type PropertyPackage,
   type ProcessingJob,
 } from "@/lib/property-pipeline/types";
+import { detectWallsFromFloorplan } from "@/lib/property-pipeline/wall-detection";
+import { extractKeyframesFromVideo } from "@/lib/property-pipeline/keyframe-extraction";
 
 /* ============================================================
    Endpoint de prueba — simula la recepción de un paquete de
-   datos estilo ZonaProp (plano 2D + fotos + video de recorrido)
-   y devuelve el esqueleto de un job de procesamiento. No dispara
-   ningún procesamiento real: es el contrato de API para diseñar
-   el pipeline (ver lib/property-pipeline/ y ARCHITECTURE.md).
+   datos estilo ZonaProp (plano 2D + fotos + video de recorrido),
+   crea un job y responde 202 de inmediato. El procesamiento (hoy:
+   detección de muros simulada + planificación de keyframes, ver
+   lib/property-pipeline/) corre DESPUÉS de responder, vía after()
+   de Next.js — así el request no queda bloqueado esperando el
+   fetch de la imagen/video. GET ?jobId= permite pollear el
+   resultado a medida que cada paso termina.
    El store en memoria es efímero — se pierde en cada reinicio /
-   redeploy, es solo para probar el ciclo create → poll.
+   redeploy, es solo para probar el ciclo create → poll → resultado.
    ============================================================ */
 
 const URL_RE = /^https?:\/\/\S+$/i;
 
 const jobs = new Map<string, ProcessingJob>();
+
+async function runPipeline(job: ProcessingJob) {
+  job.status = "processing";
+
+  const wallStep = job.steps.find((s) => s.id === "wall-detection")!;
+  const keyframeStep = job.steps.find((s) => s.id === "keyframe-extraction")!;
+
+  wallStep.status = "running";
+  try {
+    const walls = await detectWallsFromFloorplan(job.input.floorplanImageUrl);
+    job.result = { ...job.result, walls };
+    wallStep.status = "done";
+  } catch (err) {
+    wallStep.status = "failed";
+    console.error(`[property-processor] ${job.jobId} wall-detection falló:`, err);
+  }
+
+  keyframeStep.status = "running";
+  try {
+    const keyframes = await extractKeyframesFromVideo(job.input.walkthroughVideoUrl);
+    job.result = { ...job.result, keyframes };
+    keyframeStep.status = "done";
+  } catch (err) {
+    keyframeStep.status = "failed";
+    console.error(`[property-processor] ${job.jobId} keyframe-extraction falló:`, err);
+  }
+
+  // cloud-reconstruction queda fuera de este pivot — ver ARCHITECTURE.md.
+  const anyFailed = wallStep.status === "failed" || keyframeStep.status === "failed";
+  job.status = anyFailed ? "failed" : "done";
+}
 
 function validatePackage(body: unknown): { data?: PropertyPackage; error?: string } {
   if (typeof body !== "object" || body === null) {
@@ -71,6 +107,8 @@ export async function POST(req: Request) {
     createdAt: new Date().toISOString(),
   };
   jobs.set(jobId, job);
+
+  after(() => runPipeline(job));
 
   return NextResponse.json(job, { status: 202 });
 }
