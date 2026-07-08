@@ -105,18 +105,15 @@ const METRICS = [
 const PAIN_POINTS = [
   {
     title: "Preventas estancadas",
-    detail:
-      "Los ciclos de venta superan los tiempos de financiación, poniendo en riesgo el cronograma de obra.",
+    detail: "El ciclo de venta supera el tiempo de financiación.",
   },
   {
     title: "Ceguera de mercado",
-    detail:
-      "Invierten fortunas en marketing sin entender qué unidad o atributo del activo motiva realmente la decisión de inversión.",
+    detail: "Invertís en marketing sin saber qué mueve la decisión real.",
   },
   {
-    title: "El modelo tradicional es analógico",
-    detail:
-      "Renders estáticos que no generan confianza financiera ni certeza sobre el producto final.",
+    title: "Modelo comercial analógico",
+    detail: "Renders estáticos, cero certeza financiera para el inversor.",
   },
 ];
 
@@ -191,14 +188,16 @@ export default function V2Page() {
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           El diagnóstico es <Serif>financiero</Serif>, no estético.
         </h2>
-        <div className="mt-14 grid gap-4 sm:grid-cols-3">
-          {PAIN_POINTS.map((c) => (
-            <div
-              key={c.title}
-              className={`rounded-[10px] bg-[#202020] p-8 transition-shadow duration-300 ${EASE} ${RIM_GOLD}`}
-            >
-              <h3 className="text-[21px] font-medium leading-[1.2] text-white">{c.title}</h3>
-              <p className="mt-4 border-t border-[#333333] pt-4 text-[16px] leading-[1.5] text-[#999999]">
+        <div className="mt-24 grid gap-16 sm:grid-cols-3 sm:gap-10 lg:gap-20">
+          {PAIN_POINTS.map((c, i) => (
+            <div key={c.title}>
+              <p className="font-mono text-[13px] tracking-[0.1em] text-[#D4AF37]">
+                0{i + 1}
+              </p>
+              <h3 className="mt-6 text-[26px] font-semibold uppercase leading-[1.15] tracking-[-0.01em] text-white sm:text-[28px]">
+                {c.title}
+              </h3>
+              <p className="mt-5 text-[15px] leading-[1.6] text-[#999999]">
                 {c.detail}
               </p>
             </div>
@@ -312,8 +311,25 @@ export default function V2Page() {
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="relative mt-6">
           <MeasureDemo />
+
+          {/* HUD técnico — lecturas superpuestas, monoespaciadas, sin
+              interferir con la interacción del visor debajo */}
+          <div className="pointer-events-none absolute inset-0 z-20 hidden font-mono text-[10px] tracking-[0.04em] text-[#F0CB65]/90 [text-shadow:0_1px_3px_rgba(0,0,0,0.85)] sm:block">
+            <span className="absolute left-5 top-5">
+              [ID: PENTHOUSE-2204-RIVERSIDE]
+            </span>
+            <span className="absolute right-5 top-5">
+              [STATUS: PREVENTA / 65% DISPONIBLE]
+            </span>
+            <span className="absolute bottom-5 left-5">
+              [PIPELINE: 42 LEADS ACTIVOS]
+            </span>
+            <span className="absolute bottom-5 right-5">
+              [INTERÉS: 87% EN ÁREA COCINA]
+            </span>
+          </div>
         </div>
 
         {/* KPIs de Conversión en Tiempo Real — el valor que ve el desarrollador */}
@@ -364,7 +380,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Gemelo Digital de Aceleración — escaneo real, en primera persona ===== */}
-      <section id="recorrido" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
+      <section id="gemelo-digital" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
         <Label className="mb-10">Gemelo Digital de Aceleración · Escaneo real</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Caminá un escaneo <Serif>real</Serif>.

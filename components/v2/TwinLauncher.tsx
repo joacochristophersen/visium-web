@@ -4,12 +4,12 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 
 /* ============================================================
-   Marco de simulación Black & Gold para el gemelo real.
-   Three.js (~150 kB gz) solo baja cuando el usuario inicia el
-   recorrido: dynamic import ssr:false disparado por click —
-   la página estática no paga el costo del 3D. Al iniciar, el
-   recorrido se abre dentro del Dashboard Analítico completo
-   (header + sidebar de datos), no como visor aislado.
+   Marco Black & Gold para el Gemelo Digital real.
+   Three.js (~150 kB gz) solo baja cuando el usuario lo activa:
+   dynamic import ssr:false disparado por click — la página
+   estática no paga el costo del 3D. Al activarse, se abre
+   dentro del Centro de Comando completo (header + sidebar de
+   datos), no como visor aislado.
    ============================================================ */
 
 const TwinDashboardModal = dynamic(
