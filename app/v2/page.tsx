@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { V2Nav } from "@/components/v2/V2Nav";
 import { RequestAccessButton, ACCESS_DIALOG_ID } from "@/components/v2/RequestAccessButton";
-import { requestAccess } from "@/app/v2/actions";
+import { requestAccess, requestViabilityReport } from "@/app/v2/actions";
 import { MeasureDemo } from "@/components/v2/MeasureDemo";
 import { TwinLauncher } from "@/components/v2/TwinLauncher";
 import { DashboardShowcase } from "@/components/v2/DashboardShowcase";
@@ -41,6 +41,15 @@ function Serif({ children }: { children: React.ReactNode }) {
     <em className="bg-gradient-to-r from-[#F0CB65] to-[#D4AF37] bg-clip-text font-display font-medium italic text-transparent">
       {children}
     </em>
+  );
+}
+
+function AssetStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-[10px] uppercase tracking-[0.06em] text-[#777777]">{label}</p>
+      <p className="mt-0.5 text-[14px] font-medium text-white">{value}</p>
+    </div>
   );
 }
 
@@ -119,7 +128,7 @@ export default function V2Page() {
         <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1200px] flex-col items-start justify-end gap-8 px-5 pb-16 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <Label className="mb-6">Walk Through Reality · Spatial Intelligence Platform</Label>
-            <h1 className="max-w-4xl text-[clamp(3rem,8vw,8rem)] font-medium leading-[1.0] tracking-[-0.05em] text-white">
+            <h1 className="max-w-4xl text-[clamp(3rem,8vw,8rem)] font-semibold leading-[1.0] tracking-[-0.05em] text-white">
               Aceleramos su <Serif>Preventa</Serif> con Inteligencia Espacial.
             </h1>
             <p className="mt-8 max-w-xl text-[20px] leading-[1.5] text-[#999999]">
@@ -146,8 +155,19 @@ export default function V2Page() {
         </div>
       </section>
 
+      {/* ===== Proof Point — autoridad y resultado, sin adornos ===== */}
+      <section className="border-y border-[#1a1a1a] bg-[#0a0a0a]">
+        <div className="mx-auto max-w-[1200px] px-5 py-14 text-center">
+          <p className="mx-auto max-w-3xl text-[20px] font-light leading-[1.6] text-white sm:text-[24px]">
+            VISIUM reduce el tiempo de toma de decisión del comprador en un{" "}
+            <span className="font-semibold text-[#F0CB65]">40%</span> en
+            etapas de preventa.
+          </p>
+        </div>
+      </section>
+
       {/* ===== El problema — por qué existe Visium ===== */}
-      <section className="mx-auto max-w-[1200px] px-5 py-28">
+      <section className="mx-auto max-w-[1200px] px-5 py-36">
         <Label className="mb-10">El problema</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Buscar propiedades sigue <Serif>roto</Serif>.
@@ -168,8 +188,8 @@ export default function V2Page() {
       </section>
 
       {/* ===== Twins — gemelos digitales ===== */}
-      <section id="twins" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
-        <Label className="mb-10">Twins · Gaussian Splatting</Label>
+      <section id="twins" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
+        <Label className="mb-10">Gemelo Digital de Inteligencia Inmobiliaria</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           We don&rsquo;t model reality. We capture its <Serif>light</Serif>.
         </h2>
@@ -183,7 +203,7 @@ export default function V2Page() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2">
           <MediaCard
             src="/videos/living.mp4"
-            badge="Digital Twin"
+            badge="Gemelo Digital"
             title="Gemelo digital fotorrealista — capturado a 2.4M de puntos por segundo."
           />
           <MediaCard
@@ -214,7 +234,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Demo — Motor de Análisis Comercial ===== */}
-      <section id="demo" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
+      <section id="demo" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
         <Label className="mb-10">Demo interactiva · Motor de Análisis Comercial</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Panel de Aceleración:{" "}
@@ -228,7 +248,26 @@ export default function V2Page() {
           <span className="text-[#F0CB65]">Probabilidad de Cierre™</span> para
           tu equipo. Del primer clic al contrato firmado.
         </p>
-        <div className="mt-14">
+        {/* Métricas de Activo — el visor deja de ser un modelo y pasa a ser
+            información financiera del desarrollo */}
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-6 rounded-[10px] border border-[#D4AF37]/25 bg-[#141414] px-6 py-4">
+          <div className="flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <rect x="5" y="11" width="14" height="9" rx="1.5" stroke="#D4AF37" strokeWidth="1.6" />
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#D4AF37" strokeWidth="1.6" />
+            </svg>
+            <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#D4AF37]">
+              Datos privados · Métricas de activo
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-x-10 gap-y-3">
+            <AssetStat label="Ubicación" value="Puerto Madero" />
+            <AssetStat label="Valor / m²" value="USD 5.800" />
+            <AssetStat label="Comercialización" value="Preventa · 65% vendido" />
+          </div>
+        </div>
+
+        <div className="mt-6">
           <MeasureDemo />
         </div>
 
@@ -251,10 +290,36 @@ export default function V2Page() {
             ))}
           </div>
         </div>
+
+        {/* Solicitar Reporte de Viabilidad — segunda puerta de conversión,
+            más liviana que el modal de acceso corporativo */}
+        <div className="mt-6 flex flex-col items-start gap-4 rounded-[10px] border border-[#333333] bg-[#141414] p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-[15px] font-medium text-white">Solicitar Reporte de Viabilidad</p>
+            <p className="mt-1 text-[13px] text-[#999999]">
+              Recibí el modelo de datos completo de VISIUM para tu desarrollo.
+            </p>
+          </div>
+          <form action={requestViabilityReport} className="flex w-full max-w-sm gap-2 sm:w-auto">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="tu@desarrolladora.com"
+              className={`min-w-0 flex-1 rounded-[8px] border border-[#333333] bg-transparent px-3 py-2.5 text-[14px] text-white placeholder:text-[#999999]/50 transition-colors duration-200 ${EASE} focus:border-[#D4AF37] focus:outline-none`}
+            />
+            <button
+              type="submit"
+              className="shrink-0 whitespace-nowrap rounded-[8px] bg-[#D4AF37] px-4 py-2.5 text-[13px] font-medium text-black transition-opacity hover:opacity-90"
+            >
+              Solicitar
+            </button>
+          </form>
+        </div>
       </section>
 
       {/* ===== Gemelo Digital de Aceleración — escaneo real, en primera persona ===== */}
-      <section id="recorrido" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
+      <section id="recorrido" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
         <Label className="mb-10">Gemelo Digital de Aceleración · Escaneo real</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           Caminá un escaneo <Serif>real</Serif>.
@@ -273,7 +338,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Intelligence — VISIUM SCORE™ ===== */}
-      <section id="intelligence" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
+      <section id="intelligence" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
         <Label className="mb-10">Intelligence · VISIUM SCORE™</Label>
         <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
           No analizamos clics. Analizamos <Serif>intención</Serif>.
@@ -283,6 +348,17 @@ export default function V2Page() {
           SCORE™ las convierte en una predicción de intención de compra — el
           activo más valioso de tu inmobiliaria.
         </p>
+
+        <div className="mt-10 max-w-2xl border-l border-[#D4AF37]/30 py-1 pl-6">
+          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#D4AF37]">
+            Para desarrolladores en pozo
+          </p>
+          <p className="mt-2 text-[16px] leading-[1.6] text-[#999999]">
+            Optimización de Tasa de Conversión (CR) para Activos en Pozo —
+            cada punto de CR ganado en preventa acelera directamente tu
+            velocidad de escrituración.
+          </p>
+        </div>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SCORE_SIGNALS.map((s) => (
@@ -320,7 +396,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Insights — la plataforma completa ===== */}
-      <section id="insights" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-28">
+      <section id="insights" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 pb-36">
         <div id="plataforma" className="scroll-mt-24">
           <Label className="mb-10">Insights · Plataforma</Label>
           <h2 className="max-w-4xl text-[clamp(2rem,4.5vw,3.375rem)] font-light leading-[1.2] text-white">
@@ -352,6 +428,7 @@ export default function V2Page() {
 
         {/* El entregable — dashboard real del desarrollador */}
         <div id="dashboard" className="mt-24 scroll-mt-24">
+          <Label className="mb-6">Centro de Comando de Preventa</Label>
           <h3 className="max-w-3xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-light leading-[1.2] text-white">
             Tu pipeline, ordenado por <Serif>intención</Serif> de compra.
           </h3>
@@ -371,7 +448,7 @@ export default function V2Page() {
       </section>
 
       {/* ===== Access — la primera visita que importa ===== */}
-      <section id="access" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 py-28">
+      <section id="access" className="mx-auto max-w-[1200px] scroll-mt-24 px-5 py-36">
         <Label className="mb-10">Acceso corporativo</Label>
         <h2 className="max-w-4xl text-[clamp(2.25rem,5vw,3.5625rem)] font-medium leading-[1.1] tracking-[-0.05em] text-white">
           La primera visita debería ser <Serif>la que importa</Serif>.
@@ -510,7 +587,7 @@ export default function V2Page() {
 
             <button
               type="submit"
-              className={`mt-2 inline-flex h-11 items-center justify-center self-start rounded-full bg-gradient-to-b from-[#F0CB65] to-[#D4AF37] px-6 text-[16px] font-medium text-black shadow-[0_0_40px_-8px_rgba(212,175,55,0.5)] transition-opacity duration-200 ${EASE} hover:opacity-90`}
+              className={`mt-2 inline-flex h-11 items-center justify-center self-start rounded-full bg-[#D4AF37] px-6 text-[16px] font-medium text-black transition-opacity duration-200 ${EASE} hover:opacity-90`}
             >
               Iniciar Escaneo Espacial
             </button>

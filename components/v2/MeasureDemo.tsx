@@ -491,15 +491,12 @@ export function MeasureDemo() {
             </div>
             <button
               onClick={startDemo}
-              className="group flex items-center gap-3 rounded-full bg-gradient-to-b from-[#F0CB65] to-[#D4AF37] px-9 py-5 shadow-[0_0_50px_-8px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_65px_-6px_rgba(212,175,55,0.75)] active:scale-[0.97]"
+              className="group flex items-center gap-3 rounded-full bg-gradient-to-b from-[#F0CB65] to-[#D4AF37] px-9 py-5 shadow-[0_4px_18px_rgba(0,0,0,0.45)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_6px_24px_rgba(0,0,0,0.55)] active:scale-[0.98]"
             >
-              <span className="relative flex h-9 w-9 items-center justify-center">
-                <span className="absolute inset-0 animate-ping rounded-full bg-black/20" />
-                <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-black/15">
-                  <svg className="h-4 w-4 translate-x-0.5 text-black" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black/15">
+                <svg className="h-4 w-4 translate-x-0.5 text-black" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </span>
               <span className="text-[15px] font-semibold uppercase tracking-wide text-black">
                 Iniciar Demo

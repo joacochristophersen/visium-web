@@ -64,15 +64,12 @@ export function TwinLauncher() {
           </div>
           <button
             onClick={() => setOpen(true)}
-            className="group flex items-center gap-3 rounded-full border border-white/20 bg-black/60 px-7 py-4 backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/[0.08] hover:shadow-[0_0_40px_-10px_rgba(212,175,55,0.5)] active:scale-[0.97]"
+            className="group flex items-center gap-3 rounded-full border border-white/20 bg-black/60 px-7 py-4 backdrop-blur-md transition-all duration-300 hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/[0.08] active:scale-[0.98]"
           >
-            <span className="relative flex h-8 w-8 items-center justify-center">
-              <span className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37]/20" />
-              <span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/15">
-                <svg className="h-3.5 w-3.5 translate-x-0.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/15">
+              <svg className="h-3.5 w-3.5 translate-x-0.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
             </span>
             <span className="text-[13px] font-medium tracking-wide text-white transition-colors group-hover:text-[#F0CB65]">
               INICIAR GEMELO DIGITAL
